@@ -12,5 +12,5 @@ try {
     $router->dispatch();
 } catch (Exception $e) {
     // Gestion des erreurs génériques
-    (new ErrorController())->notFound();
+    (new PageController())->showNotFound();
 }

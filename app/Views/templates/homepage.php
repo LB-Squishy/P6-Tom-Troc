@@ -5,8 +5,8 @@
  */
 ?>
 
-<div>
+<div class="container">
     <h1>Accueil</h1>
     <p>Test Acceuil.</p>
-    <a href="index.php?action=books">Page Books</a>
+    <a class="btn btn-success" href="index.php?action=books" role="button">Découvrir</a>
 </div>

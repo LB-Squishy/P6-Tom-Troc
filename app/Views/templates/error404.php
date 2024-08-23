@@ -5,8 +5,8 @@
  */
 ?>
 
-<div>
+<div class="container">
     <h1>404</h1>
     <p>Test Erreur 404.</p>
-    <a href="index.php?action=homepage">Retour à la page d'accueil</a>
+    <a class="btn btn-success" href="index.php?action=homepage" role="button">Retour à la page d'accueil</a>
 </div>
