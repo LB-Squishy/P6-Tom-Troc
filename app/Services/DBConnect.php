@@ -5,22 +5,22 @@
  * Cette classe est un singleton. Cela signifie qu'il n'est pas possible de créer plusieurs instances de cette classe.
  * Pour récupérer une instance de cette classe, il faut utiliser la méthode getInstance().
  */
-class DBManager 
+class DBConnect
 {
     // Création d'une classe singleton qui permet de se connecter à la base de données.
-    // On crée une instance de la classe DBManager qui permet de se connecter à la base de données.
+    // On crée une instance de la classe DBConnect qui permet de se connecter à la base de données.
     private static $instance;
     private $db;
 
     /**
-     * Constructeur de la classe DBManager.
+     * Constructeur de la classe DBConnect.
      * Initialise la connexion à la base de données.
      * Ce constructeur est privé. Pour récupérer une instance de la classe, il faut utiliser la méthode getInstance().
-     * @see DBManager::getInstance()
+     * @see DBConnect::getInstance()
      */
-    private function __construct() 
+    private function __construct()
     {
-        try{
+        try {
             // On se connecte à la base de données.
             $this->db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -33,13 +33,13 @@ class DBManager
     }
 
     /**
-     * Méthode qui permet de récupérer l'instance de la classe DBManager.
-     * @return DBManager
+     * Méthode qui permet de récupérer l'instance de la classe DBConnect.
+     * @return DBConnect
      */
-    public static function getInstance() : DBManager
+    public static function getInstance(): DBConnect
     {
         if (!self::$instance) {
-            self::$instance = new DBManager();
+            self::$instance = new DBConnect();
         }
         return self::$instance;
     }
@@ -48,7 +48,7 @@ class DBManager
      * Méthode qui permet de récupérer l'objet PDO qui permet de se connecter à la base de données.
      * @return PDO
      */
-    public function getPDO() : PDO
+    public function getPDO(): PDO
     {
         return $this->db;
     }
@@ -60,7 +60,7 @@ class DBManager
      * @param array|null $params : les paramètres de la requête SQL.
      * @return PDOStatement : le résultat de la requête SQL.
      */
-    public function query(string $sql, ?array $params = null) : PDOStatement
+    public function query(string $sql, ?array $params = null): PDOStatement
     {
         try {
             if ($params == null) {
@@ -76,5 +76,4 @@ class DBManager
             throw new Exception("Erreur lors de l'exécution de la requête.");
         }
     }
-    
 }

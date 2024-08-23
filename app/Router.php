@@ -1,6 +1,7 @@
 <?php
 
 require_once  'Controllers/PageController.php';
+require_once  'Controllers/BookController.php';
 require_once  'Services/Utils.php';
 require_once  'config/config.php';
 
@@ -20,7 +21,7 @@ class Router
     {
         // On récupère l'action demandée par l'utilisateur.
         // Si aucune action n'est demandée, on affiche la page d'accueil.
-        $action = Utils::request('action', 'homepage');
+        $action = AbstractController::request('action', 'homepage');
 
         // Try catch global pour gérer les erreurs
         try {
@@ -30,7 +31,7 @@ class Router
                     (new PageController())->showHome();
                     break;
                 case 'books':
-                    (new PageController())->showBooks();
+                    (new BookController())->showBooks();
                     break;
                 default:
                     (new PageController())->showNotFound();
@@ -39,7 +40,7 @@ class Router
         } catch (Exception $e) {
             // En cas d'erreur, on affiche la page d'erreur.
             $errorView = new View('Erreur');
-            $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+            $errorView->renderView('errorPage', ['errorMessage' => $e->getMessage()]);
         }
     }
 }

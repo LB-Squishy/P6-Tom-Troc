@@ -25,13 +25,13 @@
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <?php include "./app/Views/components/header.php"; ?>
+    <?php include "./app/Views/components/layout/header.php"; ?>
 
     <main>
         <?= $content /* Ici est affiché le contenu généré de la page. */ ?>
     </main>
 
-    <?php include "./app/Views/components/footer.php"; ?>
+    <?php include "./app/Views/components/layout/footer.php"; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 

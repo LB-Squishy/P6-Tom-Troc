@@ -1,8 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../Services/View.php';
+require_once __DIR__ . '/AbstractController.php';
+require_once __DIR__ . '/../Models/Managers/UserManager.php';
 
-class PageController
+class PageController extends AbstractController
 {
     /**
      * Affiche la page d'accueil.
@@ -10,18 +11,11 @@ class PageController
      */
     public function showHome(): void
     {
-        $view = new View('Accueil');
-        $view->render('homepage', []);
-    }
+        $userManager = new UserManager();
+        $user  = $userManager->find(1);
+        $login = isset($user['login']) ? $user['login'] : 'Utilisateur non trouvé';
 
-    /**
-     * Affiche les livres.
-     * @return void
-     */
-    public function showBooks(): void
-    {
-        $view = new View('Livres');
-        $view->render('books', []);
+        $this->render("homepage", ['login' => $login], "Accueil");
     }
 
     /**
@@ -30,7 +24,6 @@ class PageController
      */
     public function showNotFound(): void
     {
-        $view = new View('Erreur 404');
-        $view->render('error404', []);
+        $this->render("Error404", [], "Page d'erreur 404");
     }
 }

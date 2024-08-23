@@ -6,7 +6,7 @@
 ?>
 
 <div class="container">
-    <h1>Nos Livres</h1>
+    <h1><?= htmlspecialchars($title) ?></h1>
     <p>Test Nos Livres.</p>
     <a class="btn btn-success" href="index.php?action=homepage" role="button">Page Accueil</a>
 </div>
