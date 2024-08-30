@@ -1,7 +1,8 @@
 <?php
 
-require_once  'Controllers/PageController.php';
-require_once  'Controllers/BookController.php';
+use App\Services\View;
+use App\Controllers\{AbstractController, PageController, BookController};
+
 require_once  'Services/Utils.php';
 require_once  'config/config.php';
 

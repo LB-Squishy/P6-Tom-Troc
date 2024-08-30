@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../../Services/DBConnect.php';
+namespace App\Models\Managers;
+
+use App\Services\DBConnect;
+use InvalidArgumentException;
 
 abstract class AbstractManager
 {

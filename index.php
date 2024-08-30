@@ -1,8 +1,11 @@
 <?php
 
+use App\Controllers\PageController;
+
 // Démarre la session
 session_start();
 
+require_once 'config/autoload.php';
 require_once 'app/Router.php';
 
 // Crée une instance du routeur et fait le dispatch

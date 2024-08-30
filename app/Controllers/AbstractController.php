@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../Services/View.php';
-require_once __DIR__ . '/../Services/DBConnect.php';
+namespace App\Controllers;
+
+use App\Services\{DBConnect, View};
 
 class AbstractController
 {

@@ -1,6 +1,10 @@
 <?php
 
-require_once __DIR__ . '/AbstractController.php';
+namespace App\Controllers;
+
+use App\Controllers\AbstractController;
+use App\Models\Managers\UserManager;
+
 require_once __DIR__ . '/../Models/Managers/UserManager.php';
 
 class PageController extends AbstractController

@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Controllers\AbstractController;
+
 require_once __DIR__ . '/AbstractController.php';
 
 class BookController extends AbstractController

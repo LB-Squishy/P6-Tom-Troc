@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models\Managers;
+
+use App\Models\Managers\AbstractManager;
+
 require_once __DIR__ . '/AbstractManager.php';
 
 class UserManager extends AbstractManager

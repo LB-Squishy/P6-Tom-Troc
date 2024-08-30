@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Services;
+
+use PDO, Exception, PDOException, PDOStatement;
+
 /**
  * Classe qui permet de se connecter à la base de données.
  * Cette classe est un singleton. Cela signifie qu'il n'est pas possible de créer plusieurs instances de cette classe.
@@ -11,6 +15,7 @@ class DBConnect
     // On crée une instance de la classe DBConnect qui permet de se connecter à la base de données.
     private static $instance;
     private $db;
+
 
     /**
      * Constructeur de la classe DBConnect.
