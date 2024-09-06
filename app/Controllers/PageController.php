@@ -17,9 +17,10 @@ class PageController extends AbstractController
     {
         $userManager = new UserManager();
         $user  = $userManager->find(1);
-        $login = isset($user['login']) ? $user['login'] : 'Utilisateur non trouvé';
+        $email = isset($user['email']) ? $user['email'] : 'Utilisateur non trouvé';
+        $date_inscription = isset($user['date_inscription']) ? $user['date_inscription'] : 'Date d\'inscription non trouvé';
 
-        $this->render("homepage", ['login' => $login], "Accueil");
+        $this->render("homepage", ['email' => $email, 'date_inscription' => $date_inscription], "Accueil");
     }
 
     /**
