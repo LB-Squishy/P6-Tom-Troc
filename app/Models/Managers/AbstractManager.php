@@ -9,6 +9,7 @@ abstract class AbstractManager
 {
     protected $db;
     protected ?string $table = null;
+    protected ?string $entityClass = null;
 
     /**
      * Constructeur de la classe AbstractManager.
@@ -18,39 +19,50 @@ abstract class AbstractManager
     {
         $this->db = DBConnect::getInstance()->getPDO();
         $this->setTable();
+        $this->setEntityClass();
     }
 
     /**
      * Définit le nom de la table.
-     * Cette méthode doit être implémentée dans chaque classe enfant.
      */
     abstract protected function setTable(): void;
+
+    /**
+     * Définit la classe d'entité associée.
+     */
+    abstract protected function setEntityClass(): void;
+
 
     /**
      * Méthodes CRUD : find, findAll, delete, create, update
      */
 
-
     /**
      * Trouve un enregistrement par son ID.
      * @param int $id : l'identifiant de l'enregistrement.
-     * @return array|null : les données de l'enregistrement ou null si non trouvé.
+     * @return object|null : une instance de l'entité ou null si non trouvé.
      */
-    public function find(int $id): ?array
+    public function find(int $id): ?object
     {
         $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch();
+        $data = $stmt->fetch();
+
+        if ($data && $this->entityClass) {
+            return new $this->entityClass($data);
+        }
+        return null;
     }
 
     /**
      * Trouve tous les enregistrements.
-     * @return array : les données de tous les enregistrements.
+     * @return array : les données de tous les enregistrements sous forme de tableau d'objets.
      */
     public function findAll(): array
     {
         $stmt = $this->db->query("SELECT * FROM {$this->table}");
-        return $stmt->fetchAll();
+        $data = $stmt->fetchAll();
+        return array_map(fn($item) => new $this->entityClass($item), $data);
     }
 
     /**

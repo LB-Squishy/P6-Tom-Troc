@@ -1,19 +1,18 @@
 <?php
 
-use App\Controllers\PageController;
-
-// Démarre la session
-session_start();
+use App\Controllers\NotFoundController;
 
 require_once 'config/autoload.php';
 require_once 'app/Router.php';
 
-// Crée une instance du routeur et fait le dispatch
+// Démarre la session
+session_start();
 
+// Crée une instance du routeur et fait le dispatch
 $router = new Router();
 try {
     $router->dispatch();
 } catch (Exception $e) {
     // Gestion des erreurs génériques
-    (new PageController())->showNotFound();
+    (new NotFoundController())->showNotFound();
 }

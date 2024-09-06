@@ -18,6 +18,7 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="index.php?action=homepage">Accueil</a>
                     <a class="nav-link" href="index.php?action=books">Nos livres à l'échange</a>
+                    <a class="nav-link" href="index.php?action=saperlipopette">ErrorViewTest</a>
                 </div>
             </div>
         </div>

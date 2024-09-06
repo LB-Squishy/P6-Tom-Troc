@@ -1,7 +1,6 @@
 <?php
 // Les constantes utiles, 
 // les données de connexions à la bdd
-// et tout ce qui sert à configurer. 
 
 define('TEMPLATE_VIEW_PATH', './app/Views/templates/');
 define('LAYOUT_VIEW_PATH', TEMPLATE_VIEW_PATH . 'layout.php');

@@ -1,13 +1,12 @@
 <?php
 
 use App\Services\View;
-use App\Controllers\{AbstractController, PageController, BookController};
+use App\Controllers\{AbstractController, HomepageController, NotFoundController, BookController, ErrorViewTestController};
 
-require_once  'Services/Utils.php';
 require_once  'config/config.php';
 
 /**
- * Classe router : cette classe est res^ponsable de la gestion des routes et de la
+ * Classe router : cette classe est responsable de la gestion des routes et de la
  * distribution des actions aux contrôleurs appropriés en fonction de la requête
  * utilisateur.
  */
@@ -29,13 +28,16 @@ class Router
             // On détermine quelle action effectuer en fonction de la valeur $action
             switch ($action) {
                 case 'homepage':
-                    (new PageController())->showHome();
+                    (new HomepageController())->showHomepage();
                     break;
                 case 'books':
                     (new BookController())->showBooks();
                     break;
+                case 'saperlipopette':
+                    (new ErrorViewTestController())->showTest();
+                    break;
                 default:
-                    (new PageController())->showNotFound();
+                    (new NotFoundController())->showNotFound();
                     break;
             }
         } catch (Exception $e) {
