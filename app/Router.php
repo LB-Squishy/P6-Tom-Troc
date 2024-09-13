@@ -1,7 +1,7 @@
 <?php
 
 use App\Services\View;
-use App\Controllers\{AbstractController, HomepageController, NotFoundController, BookController, ErrorViewTestController};
+use App\Controllers\{AbstractController, AccueilController, NosLivresController, LivreController, ComptePublicController, ConnexionController, InscriptionController, MessagerieController, MonCompteController, EditionLivreController, NotFoundController};
 
 require_once  'config/config.php';
 
@@ -15,26 +15,44 @@ class Router
 {
     /**
      * Cette méthode permet de dispatcher l'action demandée par l'utilisateur.
-     * @param string $action : l'action demandée (par défaut "homepage" si aucune action n'est spécifiée).
+     * @param string $action : l'action demandée (par défaut "accueil" si aucune action n'est spécifiée).
      */
     public function dispatch()
     {
         // On récupère l'action demandée par l'utilisateur.
         // Si aucune action n'est demandée, on affiche la page d'accueil.
-        $action = AbstractController::request('action', 'homepage');
+        $action = AbstractController::request('action', 'accueil');
 
         // Try catch global pour gérer les erreurs
         try {
             // On détermine quelle action effectuer en fonction de la valeur $action
             switch ($action) {
-                case 'homepage':
-                    (new HomepageController())->showHomepage();
+                case 'accueil':
+                    (new AccueilController())->showAccueil();
                     break;
-                case 'books':
-                    (new BookController())->showBooks();
+                case 'nos-livres':
+                    (new NosLivresController())->showNosLivres();
                     break;
-                case 'saperlipopette':
-                    (new ErrorViewTestController())->showTest();
+                case 'livre':
+                    (new LivreController())->showLivre();
+                    break;
+                case 'compte-public':
+                    (new ComptePublicController())->showComptePublic();
+                    break;
+                case 'connexion':
+                    (new ConnexionController())->showConnexion();
+                    break;
+                case 'inscription':
+                    (new InscriptionController())->showInscription();
+                    break;
+                case 'messagerie':
+                    (new MessagerieController())->showMessagerie();
+                    break;
+                case 'mon-compte':
+                    (new MonCompteController())->showMonCompte();
+                    break;
+                case 'edition-livre':
+                    (new EditionLivreController())->showEditionLivre();
                     break;
                 default:
                     (new NotFoundController())->showNotFound();
@@ -43,7 +61,7 @@ class Router
         } catch (Exception $e) {
             // En cas d'erreur, on affiche la page d'erreur.
             $errorView = new View('Erreur');
-            $errorView->renderView('errorPage', ['errorMessage' => $e->getMessage()]);
+            $errorView->renderView('errorPage', ['errorMessage' => $e->getMessage()], "Erreur");
         }
     }
 }

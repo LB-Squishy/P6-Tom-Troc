@@ -5,13 +5,13 @@ namespace App\Controllers;
 use App\Controllers\AbstractController;
 use App\Models\Managers\UserManager;
 
-class HomepageController extends AbstractController
+class MessagerieController extends AbstractController
 {
     /**
-     * Affiche la page d'accueil.
+     * Affiche la page de messagerie.
      * @return void
      */
-    public function showHomepage(): void
+    public function showMessagerie(): void
     {
         $userManager = new UserManager();
         $user = $userManager->find(1);
@@ -24,6 +24,6 @@ class HomepageController extends AbstractController
             $date_inscription = 'Date d\'inscription non trouvée';
         }
 
-        $this->render("homepage", ['email' => $email, 'date_inscription' => $date_inscription], "Accueil");
+        $this->render("messagerie", ['email' => $email, 'date_inscription' => $date_inscription], "Messagerie");
     }
 }

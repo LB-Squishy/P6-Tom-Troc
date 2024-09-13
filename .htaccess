@@ -1,0 +1,9 @@
+# Activation du module de réécriture d'URL
+RewriteEngine On
+
+# Réécriture des URLs pour éviter l'accès direct aux fichiers PHP
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Réécriture de l'URL pour appeler index.php et passer l'action en paramètre
+RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
