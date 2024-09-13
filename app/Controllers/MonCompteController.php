@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
-use App\Models\Managers\UserManager;
 
 class MonCompteController extends AbstractController
 {
@@ -13,17 +12,12 @@ class MonCompteController extends AbstractController
      */
     public function showMonCompte(): void
     {
-        $userManager = new UserManager();
-        $user = $userManager->find(1);
 
-        if ($user) {
-            $email = $user->getEmail();
-            $date_inscription = $user->getDateInscription();
-        } else {
-            $email = 'Utilisateur non trouvé';
-            $date_inscription = 'Date d\'inscription non trouvée';
+        if (!isset($_SESSION["user"])) {
+            header('Location: error404');
+            exit();
         }
 
-        $this->render("monCompte", ['email' => $email, 'date_inscription' => $date_inscription], "Mon Compte");
+        $this->render("monCompte", [], "Mon Compte");
     }
 }

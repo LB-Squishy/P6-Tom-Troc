@@ -7,7 +7,17 @@
 
 <div class="container">
     <h1><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-    <p>Le mail du premier utilisateur est : <?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?></p>
-    <p>Sa date d'inscription est le: <?php echo htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8'); ?></p>
-    <a class="btn btn-success" href="connexion" role="button">Connexion</a>
+    <form method="POST" action="submit-inscription">
+        <label for="pseudo">Pseudo</label>
+        <input id="pseudo" type="text" name="pseudo" required>
+        <label for="email">Adresse email</label>
+        <input id="email" type="email" name="email" required>
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" name="password" required>
+        <button type="submit">S'inscrire</button>
+    </form>
+    <p>Déjà inscrit ? <a href="connexion">Connectez-vous</a></p>
+    <?php if (isset($error)) : ?>
+        <p class="error"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
 </div>

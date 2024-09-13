@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
-use App\Models\Managers\UserManager;
 
 class LivreController  extends AbstractController
 {
@@ -13,17 +12,6 @@ class LivreController  extends AbstractController
      */
     public function showLivre(): void
     {
-        $userManager = new UserManager();
-        $user = $userManager->find(1);
-
-        if ($user) {
-            $email = $user->getEmail();
-            $date_inscription = $user->getDateInscription();
-        } else {
-            $email = 'Utilisateur non trouvé';
-            $date_inscription = 'Date d\'inscription non trouvée';
-        }
-
-        $this->render("Livre", ['email' => $email, 'date_inscription' => $date_inscription], "Titre du Livre");
+        $this->render("Livre", [], "Titre du Livre");
     }
 }

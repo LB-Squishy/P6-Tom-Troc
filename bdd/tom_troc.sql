@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 06 sep. 2024 à 10:16
+-- Généré le : ven. 13 sep. 2024 à 15:12
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -86,20 +86,20 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `pseudo` varchar(50) NOT NULL,
   `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password_hash`, `pseudo`, `date_inscription`) VALUES
-(1, 'laurentleboulbar@gmail.com', 'test', 'meta', '2024-09-06 10:54:47');
+INSERT INTO `users` (`id`, `email`, `password`, `pseudo`, `date_inscription`) VALUES
+(6, 'capitaine@gmail.com', '$2y$10$0iuluvFb0LON9f02rWO9m.si3z1xXT/6Wpvo2QnkNxGIj/jETaUn6', 'capitaine', '2024-09-13 16:51:27');
 
 --
 -- Contraintes pour les tables déchargées

@@ -3,6 +3,9 @@
 /**
  * Template pour afficher le header'.
  */
+
+// Vérifiez si l'utilisateur est connecté
+$isLog = isset($_SESSION["user"]);
 ?>
 
 <header>
@@ -18,9 +21,13 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="accueil">Accueil</a>
                     <a class="nav-link" href="nos-livres">Nos livres à l'échange</a>
-                    <a class="nav-link" href="messagerie">Messagerie</a>
-                    <a class="nav-link" href="mon-compte">Mon compte</a>
-                    <a class="nav-link" href="connexion">Connexion</a>
+                    <?php if ($isLog) : ?>
+                        <a class="nav-link" href="messagerie">Messagerie</a>
+                        <a class="nav-link" href="mon-compte">Mon compte</a>
+                        <a class="nav-link" href="deconnexion">Déconnexion</a>
+                    <?php else : ?>
+                        <a class="nav-link" href="connexion">Connexion</a>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

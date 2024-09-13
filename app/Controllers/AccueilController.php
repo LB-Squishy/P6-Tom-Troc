@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
-use App\Models\Managers\UserManager;
 
 class AccueilController extends AbstractController
 {
@@ -13,17 +12,17 @@ class AccueilController extends AbstractController
      */
     public function showAccueil(): void
     {
-        $userManager = new UserManager();
-        $user = $userManager->find(1);
+        $user = $_SESSION["user"] ?? null;
+        $data = [];
 
         if ($user) {
-            $email = $user->getEmail();
-            $date_inscription = $user->getDateInscription();
+            $data['email'] = $user['email'];
+            $data['date_inscription'] = $user['date_inscription'];
         } else {
-            $email = 'Utilisateur non trouvé';
-            $date_inscription = 'Date d\'inscription non trouvée';
+            $data['email'] = 'Non connecté';
+            $data['date_inscription'] = 'Non disponible';
         }
 
-        $this->render("accueil", ['email' => $email, 'date_inscription' => $date_inscription], "Rejoignez nos lecteurs passionés");
+        $this->render("accueil",  $data, "Rejoignez nos lecteurs passionés");
     }
 }

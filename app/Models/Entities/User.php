@@ -5,12 +5,12 @@ namespace App\Models\Entities;
 use App\Models\Entities\AbstractEntity;
 
 /**
- * Entité User : un user est défini par son id, un email, un password_hash, un pseudo et une date_inscription.
+ * Entité User : un user est défini par son id, un email, un password, un pseudo et une date_inscription.
  */
 class User extends AbstractEntity
 {
     private string $email;
-    private string $password_hash;
+    private string $password;
     private string $pseudo;
     private string $date_inscription;
 
@@ -33,21 +33,21 @@ class User extends AbstractEntity
     }
 
     /**
-     * Setter pour le password_hash.
-     * @param string $password_hash
+     * Setter pour le password.
+     * @param string $password
      */
-    public function setPasswordHash(string $password_hash): void
+    public function setPassword(string $password): void
     {
-        $this->password_hash = $password_hash;
+        $this->password = $password;
     }
 
     /**
-     * Getter pour le password_hash.
+     * Getter pour le password.
      * @return string
      */
-    public function getPasswordHash(): string
+    public function getPassword(): string
     {
-        return $this->password_hash;
+        return $this->password;
     }
 
     /**

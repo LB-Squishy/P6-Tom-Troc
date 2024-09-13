@@ -42,8 +42,17 @@ class Router
                 case 'connexion':
                     (new ConnexionController())->showConnexion();
                     break;
+                case 'submit-connexion':
+                    (new ConnexionController())->connexion();
+                    break;
+                case 'deconnexion':
+                    (new ConnexionController())->deconnexion();
+                    break;
                 case 'inscription':
                     (new InscriptionController())->showInscription();
+                    break;
+                case 'submit-inscription':
+                    (new InscriptionController())->inscription();
                     break;
                 case 'messagerie':
                     (new MessagerieController())->showMessagerie();
