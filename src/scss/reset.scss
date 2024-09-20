@@ -5,8 +5,12 @@ body {
     font-weight: 400 !important;
 }
 
-.navbar {
+.navbar-background {
     background-color: $background-header-color !important;
+}
+
+.nav-link.active {
+    color: $primary-color !important;
 }
 
 h1 {
@@ -22,6 +26,12 @@ h1 {
     height: 63px !important;
     font-weight: 600 !important;
     align-content: center;
+}
+
+.form-container {
+    @include Small {
+        margin: 78px 0 100px 0 !important;
+    }
 }
 
 .form-label {

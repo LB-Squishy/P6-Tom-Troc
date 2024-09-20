@@ -7,8 +7,8 @@
 
 <div class="container-fluid d-flex align-items-center justify-content-center p-0">
     <div class="row w-100 h-100">
-        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center p-0">
-            <div class="w-100 p-2" style="max-width: 350px;">
+        <div class="form-container col-md-6 d-flex flex-column justify-content-center align-items-center p-0">
+            <div class="w-100 px-2" style="max-width: 350px;">
                 <h1 class="mb-5"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
                 <form method="POST" action="submit-inscription">
                     <div class="mb-3">
