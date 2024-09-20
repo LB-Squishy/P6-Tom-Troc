@@ -29,9 +29,12 @@ h1 {
   align-content: center;
 }
 
-@media (min-width: 576px) {
+.form-container {
+  margin: 78px 0 100px 0 !important;
+}
+@media (min-width: 768px) {
   .form-container {
-    margin: 78px 0 100px 0 !important;
+    margin: 0 !important;
   }
 }
 
