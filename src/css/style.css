@@ -1,3 +1,4 @@
+/*****Media Queries*****/
 body {
   background-color: #faf9f7 !important;
   font-family: "Inter" !important;
@@ -41,7 +42,7 @@ a {
 }
 
 footer {
-  background-color: white !important;
+  background-color: #ffffff !important;
 }
 
 /*# sourceMappingURL=style.css.map */

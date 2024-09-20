@@ -1,0 +1,31 @@
+/*****Media Queries*****/
+
+@mixin Small {
+    @media (min-width: 576px) {
+        @content;
+    }
+}
+
+@mixin Medium {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin Large {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin Extra-large {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin Extra-extra-large {
+    @media (min-width: 1400px) {
+        @content;
+    }
+}
