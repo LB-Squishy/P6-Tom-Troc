@@ -9,10 +9,10 @@ $isLog = isset($_SESSION["user"]);
 ?>
 
 <header>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg" style="height: 80px;">
         <div class="container">
             <a class="navbar-brand" href="index.php?action=accueil">
-                <img src="../../../src/images/logoTomTroc.png" alt="Logo" width="155" height="51" class="d-inline-block align-text-top">
+                <img src="../../../src/images/logoTomTroc.png" alt="Logo" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
