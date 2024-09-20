@@ -13,11 +13,11 @@
                 <form method="POST" action="submit-connexion">
                     <div class="mb-3">
                         <label class="form-label" for="email">Adresse email</label>
-                        <input class="form-control" id="email" type="email" name="email" required>
+                        <input class="form-control" id="email" type="email" name="email" autocomplete="email" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="password">Mot de passe</label>
-                        <input class="form-control" id="password" type="password" name="password" required>
+                        <input class="form-control" id="password" type="password" name="password" autocomplete="current-password" required>
                     </div>
                     <button class="btn btn-primary w-100" type="submit">Se connecter</button>
                 </form>
