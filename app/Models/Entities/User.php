@@ -13,6 +13,8 @@ class User extends AbstractEntity
     private string $password;
     private string $pseudo;
     private string $date_inscription;
+    private string $miniature_profil_url;
+    private const DEFAULT_MINIATURE_PROFIL_URL = "./src/images/miniature-profil-default.png";
 
     /**
      * Setter pour email.
@@ -84,5 +86,23 @@ class User extends AbstractEntity
     public function getDateInscription(): string
     {
         return $this->date_inscription;
+    }
+
+    /**
+     * Setter pour le miniature_profil_url.
+     * @param string $miniature_profil_url
+     */
+    public function setMiniatureProfilUrl(string $miniature_profil_url): void
+    {
+        $this->miniature_profil_url = $miniature_profil_url;
+    }
+
+    /**
+     * Getter pour le miniature_profil_url.
+     * @return string
+     */
+    public function getMiniatureProfilUrl(): string
+    {
+        return $this->miniature_profil_url ?: self::DEFAULT_MINIATURE_PROFIL_URL;
     }
 }

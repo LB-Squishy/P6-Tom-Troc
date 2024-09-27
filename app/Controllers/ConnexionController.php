@@ -32,12 +32,7 @@ class ConnexionController extends AbstractController
             $user = $userManager->getUserByEmail($email);
 
             if ($user && password_verify($password, $user->getPassword())) {
-                $_SESSION["user"] = [
-                    "id" => $user->getId(),
-                    "email" => $user->getEmail(),
-                    "pseudo" => $user->getPseudo(),
-                    "date_inscription" => $user->getDateInscription()
-                ];
+                $_SESSION["user"] = $user;
                 header('Location: accueil');
                 exit();
             } else {

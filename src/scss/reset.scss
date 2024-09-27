@@ -19,6 +19,10 @@ h1 {
     font-weight: 400 !important;
 }
 
+a {
+    color: inherit !important;
+}
+
 .btn-primary {
     background-color: $primary-color !important;
     border-color: $primary-color !important;
@@ -28,27 +32,13 @@ h1 {
     align-content: center;
 }
 
-.form-container {
-    margin: 78px 0 100px 0 !important;
-    @include Medium {
-        margin: 0 !important;
-    }
-}
-
-.form-label {
-    color: #a6a6a6 !important;
-}
-
-.form-control {
-    height: 50px;
-    border: 1px solid #f0f0f0 !important;
-    &:focus {
-        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.411) !important;
-    }
-}
-
-a {
-    color: inherit !important;
+.profil-miniature {
+    display: block !important;
+    width: 135px !important;
+    height: 135px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    background-color: $background-secondary-color;
 }
 
 footer {
