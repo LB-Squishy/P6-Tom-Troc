@@ -5,6 +5,11 @@ body {
     font-weight: 400 !important;
 }
 
+.margin-container {
+    margin-top: 90px !important;
+    margin-bottom: 100px !important;
+}
+
 .navbar-background {
     background-color: $background-header-color !important;
 }
@@ -21,6 +26,15 @@ h1 {
 
 a {
     color: inherit !important;
+}
+
+P {
+    margin: 0px !important;
+}
+
+section {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .btn-primary {

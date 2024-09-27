@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
+use App\Models\Managers\BookManager;
 
 class MonCompteController extends AbstractController
 {
@@ -17,14 +18,19 @@ class MonCompteController extends AbstractController
         $data = [];
 
         if ($user) {
+            $data['id'] = $user->getId();
             $data['email'] = $user->getEmail();
+            $data['pseudo'] = $user->getPseudo();
             $data['miniature_profil_url'] = $user->getMiniatureProfilUrl();
             $data['date_inscription'] = $user->getDateInscription();
+
+            // Récupère les livres de l'utilisateur connecté
+            $bookManager = new BookManager();
+            $data['books'] = $bookManager->getBookByUserId($user->getId());
         } else {
             header('Location: error404');
             exit();
         }
-
         $this->render("monCompte", $data, "Mon Compte");
         return;
     }

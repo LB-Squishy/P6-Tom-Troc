@@ -1,0 +1,82 @@
+.moncompte-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 33px;
+    margin-top: 48px;
+    .moncompte-section {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        border-radius: 20px;
+        &__section-member {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            width: 135px !important;
+            height: 367px !important;
+            margin-top: 48px;
+            margin-bottom: 36px;
+        }
+        &__section-infos {
+        }
+        &__section-book {
+            display: flex !important;
+            flex-direction: column !important;
+
+            @include Extra-large {
+                flex-direction: column !important;
+            }
+            .book-card-admin {
+                display: flex;
+                flex-direction: column !important;
+                align-items: center;
+                gap: 80px;
+                padding: 26px 66px;
+                &__background-white {
+                    background-color: white;
+                }
+                &__background-secondary {
+                    background-color: $background-secondary-color;
+                }
+                @include Extra-large {
+                    flex-direction: row !important;
+                }
+            }
+        }
+    }
+    @include Medium {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    section:nth-child(3) {
+        @include Medium {
+            grid-column: span 2 !important;
+        }
+    }
+}
+
+.btn-dispo {
+    background-color: $tag-true-color !important;
+    border-color: $tag-true-color !important;
+    border-radius: 9px;
+    color: white !important;
+    min-width: 70px !important;
+    height: 18px !important;
+    font-size: 8.8px !important;
+    font-weight: 500 !important;
+    text-align: center;
+    align-content: center;
+}
+
+.btn-nondispo {
+    background-color: $tag-false-color !important;
+    border-color: $tag-false-color !important;
+    border-radius: 9px;
+    color: white !important;
+    min-width: 70px !important;
+    height: 18px !important;
+    font-size: 8.8px !important;
+    font-weight: 500 !important;
+    text-align: center;
+    align-content: center;
+}

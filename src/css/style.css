@@ -6,6 +6,11 @@ body {
   font-weight: 400 !important;
 }
 
+.margin-container {
+  margin-top: 90px !important;
+  margin-bottom: 100px !important;
+}
+
 .navbar-background {
   background-color: #f5f3ef !important;
 }
@@ -22,6 +27,15 @@ h1 {
 
 a {
   color: inherit !important;
+}
+
+P {
+  margin: 0px !important;
+}
+
+section {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .btn-primary {
@@ -65,6 +79,92 @@ footer {
 }
 .form-control:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 171, 103, 0.411) !important;
+}
+
+.moncompte-container {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 33px;
+  margin-top: 48px;
+}
+.moncompte-container .moncompte-section {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20px;
+}
+.moncompte-container .moncompte-section__section-member {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  width: 135px !important;
+  height: 367px !important;
+  margin-top: 48px;
+  margin-bottom: 36px;
+}
+.moncompte-container .moncompte-section__section-book {
+  display: flex !important;
+  flex-direction: column !important;
+}
+@media (min-width: 1200px) {
+  .moncompte-container .moncompte-section__section-book {
+    flex-direction: column !important;
+  }
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin {
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  gap: 80px;
+  padding: 26px 66px;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__background-white {
+  background-color: white;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__background-secondary {
+  background-color: #edf2f6;
+}
+@media (min-width: 1200px) {
+  .moncompte-container .moncompte-section__section-book .book-card-admin {
+    flex-direction: row !important;
+  }
+}
+@media (min-width: 768px) {
+  .moncompte-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 768px) {
+  .moncompte-container section:nth-child(3) {
+    grid-column: span 2 !important;
+  }
+}
+
+.btn-dispo {
+  background-color: #6cc4a0 !important;
+  border-color: #6cc4a0 !important;
+  border-radius: 9px;
+  color: white !important;
+  min-width: 70px !important;
+  height: 18px !important;
+  font-size: 8.8px !important;
+  font-weight: 500 !important;
+  text-align: center;
+  align-content: center;
+}
+
+.btn-nondispo {
+  background-color: #c46c6c !important;
+  border-color: #c46c6c !important;
+  border-radius: 9px;
+  color: white !important;
+  min-width: 70px !important;
+  height: 18px !important;
+  font-size: 8.8px !important;
+  font-weight: 500 !important;
+  text-align: center;
+  align-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */

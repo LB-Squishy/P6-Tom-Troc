@@ -5,11 +5,56 @@
  */
 ?>
 
-<div class="container">
+<div class="container margin-container">
     <h1><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-    <p>Le mail de l'utilisateur connecté est : <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?></p>
-    <p>Sa date d'inscription est : <?= htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8'); ?></p>
-    <img src="<?= htmlspecialchars($miniature_profil_url, ENT_QUOTES, 'UTF-8'); ?>" alt="Photo de profil" class="profil-miniature" />
-    <a class="btn btn-primary" href="/accueil" role="button">Accueil</a>
-    <a class="btn btn-primary" href="/edition-livre" role="button">Edition Livre</a>
+    <div class="moncompte-container">
+        <section class="moncompte-section">
+            <div class="moncompte-section__section-member">
+                <div>
+                    <img class="mb-2 profil-miniature" src="<?= htmlspecialchars($miniature_profil_url, ENT_QUOTES, 'UTF-8'); ?>" alt="Photo de profil" />
+                    <a href="/mon-compte/edit-miniature">modifier</a>
+                </div>
+                <div>
+                    <div>line</div>
+                </div>
+                <div>
+                    <p><?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?= htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p>BIBLIOTHEQUE</p>
+                    <p>LOGO x livres</p>
+                </div>
+            </div>
+        </section>
+        <section class="moncompte-section">
+            <div class="moncompte-section__section-infos">
+                <p>Le mail de l'utilisateur connecté est : <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Sa date d'inscription est : <?= htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8'); ?></p>
+            </div>
+        </section>
+        <section class="moncompte-section">
+            <div class="moncompte-section__section-book">
+                <?php if (!empty($books)): ?>
+                    <?php $backgroundImpair = true; ?>
+                    <?php foreach ($books as $book): ?>
+                        <div class="book-card-admin <?= $backgroundImpair ? "book-card-admin__background-white" : "book-card-admin__background-secondary"; ?>">
+                            <img src="<?= htmlspecialchars($book->getImageUrl(), ENT_QUOTES, 'UTF-8'); ?>" alt="Couverture du livre" class="livre-miniature" />
+                            <p><?= htmlspecialchars($book->getTitre(), ENT_QUOTES, 'UTF-8'); ?></p>
+                            <p><?= htmlspecialchars($book->getAuteur(), ENT_QUOTES, 'UTF-8'); ?></p>
+                            <p><?= htmlspecialchars($book->getDescription(), ENT_QUOTES, 'UTF-8'); ?></p>
+                            <?php if ($book->getDisponibilite()) : ?>
+                                <div class="btn-dispo">disponible</div>
+                            <?php else : ?>
+                                <div class="btn-nondispo">non dispo.</div>
+                            <?php endif; ?>
+                        </div>
+                        <?php $backgroundImpair = !$backgroundImpair; ?>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <div class="p-5 align-content">
+                        <div class="btn btn-primary">Ajoutez votre premier livre</div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </section>
+    </div>
 </div>
