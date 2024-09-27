@@ -27,8 +27,7 @@
         </section>
         <section class="moncompte-section">
             <div class="moncompte-section__section-infos">
-                <p>Le mail de l'utilisateur connecté est : <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?></p>
-                <p>Sa date d'inscription est : <?= htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8'); ?></p>
+
             </div>
         </section>
         <section class="moncompte-section">

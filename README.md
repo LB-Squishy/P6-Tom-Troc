@@ -10,7 +10,7 @@ L’association vise à mettre en relation des particuliers qui souhaitent écha
 
 ## Technologie:
 
--   PHP
+-   PHP v.8.2.18
 -   Pattern MVC
 -   Orienté Objet
 -   SCSS
