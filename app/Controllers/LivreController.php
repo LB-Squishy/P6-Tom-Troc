@@ -13,5 +13,6 @@ class LivreController  extends AbstractController
     public function showLivre(): void
     {
         $this->render("Livre", [], "Titre du Livre");
+        return;
     }
 }

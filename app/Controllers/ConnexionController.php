@@ -40,6 +40,7 @@ class ConnexionController extends AbstractController
             }
         }
         $this->render("connexion", ["error" => $error ?? ""], "Connexion non Valide");
+        return;
     }
     /**
      * Deconnexion d'un utilisateur.

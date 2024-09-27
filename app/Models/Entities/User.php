@@ -14,7 +14,7 @@ class User extends AbstractEntity
     private string $pseudo;
     private string $date_inscription;
     private string $miniature_profil_url;
-    private const DEFAULT_MINIATURE_PROFIL_URL = "./src/images/miniature-profil-default.png";
+    private const DEFAULT_MINIATURE_PROFIL_URL = "/src/images/miniature-profil-default.png";
 
     /**
      * Setter pour email.
@@ -90,7 +90,7 @@ class User extends AbstractEntity
 
     /**
      * Setter pour le miniature_profil_url.
-     * @param string $miniature_profil_url
+     * @param string $date_inscription
      */
     public function setMiniatureProfilUrl(string $miniature_profil_url): void
     {

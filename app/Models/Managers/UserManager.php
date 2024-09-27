@@ -39,4 +39,17 @@ class UserManager extends AbstractManager
         }
         return null;
     }
+
+    // Récupère un utilisateur par son pseudo
+    public function getUserByPseudo(string $pseudo): ?User
+    {
+        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE pseudo = :pseudo");
+        $stmt->execute(['pseudo' => $pseudo]);
+        $data = $stmt->fetch();
+
+        if ($data && $this->entityClass) {
+            return new $this->entityClass($data);
+        }
+        return null;
+    }
 }

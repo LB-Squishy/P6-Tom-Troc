@@ -45,5 +45,6 @@ class InscriptionController extends AbstractController
         }
 
         $this->render("inscription", ["error" => $error ?? ""], "Soumission d'inscription");
+        return;
     }
 }

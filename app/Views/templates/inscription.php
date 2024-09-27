@@ -10,7 +10,7 @@
         <div class="form-container col-md-6 d-flex flex-column justify-content-center align-items-center p-0">
             <div class="w-100 px-2" style="max-width: 350px;">
                 <h1 class="mb-5"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-                <form method="POST" action="submit-inscription">
+                <form method="POST" action="/submit-inscription">
                     <div class="mb-3">
                         <label class="form-label" for="pseudo">Pseudo</label>
                         <input class="form-control" id="pseudo" type="text" name="pseudo" required>
@@ -25,7 +25,7 @@
                     </div>
                     <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
                 </form>
-                <p class="mt-5 mb-0">Déjà inscrit ? <a href="connexion">Connectez-vous</a></p>
+                <p class="mt-5 mb-0">Déjà inscrit ? <a href="/connexion">Connectez-vous</a></p>
                 <?php if (isset($error)) : ?>
                     <p class="error"><?= htmlspecialchars($error) ?></p>
                 <?php endif; ?>

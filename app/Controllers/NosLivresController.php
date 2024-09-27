@@ -13,5 +13,6 @@ class NosLivresController extends AbstractController
     public function showNosLivres(): void
     {
         $this->render("nosLivres", [], "Nos livres à l'échange");
+        return;
     }
 }

@@ -10,7 +10,7 @@
         <div class="form-container col-md-6 d-flex flex-column justify-content-center align-items-center p-0">
             <div class="w-100 px-2" style="max-width: 350px;">
                 <h1 class="mb-5"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-                <form method="POST" action="submit-connexion">
+                <form method="POST" action="/submit-connexion">
                     <div class="mb-3">
                         <label class="form-label" for="email">Adresse email</label>
                         <input class="form-control" id="email" type="email" name="email" autocomplete="email" required>
@@ -21,7 +21,7 @@
                     </div>
                     <button class="btn btn-primary w-100" type="submit">Se connecter</button>
                 </form>
-                <p class="mt-5 mb-0">Pas de compte ? <a href="inscription">Inscrivez-vous</a></p>
+                <p class="mt-5 mb-0">Pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
                 <?php if (isset($error)) : ?>
                     <p class="error"><?= htmlspecialchars($error) ?></p>
                 <?php endif; ?>

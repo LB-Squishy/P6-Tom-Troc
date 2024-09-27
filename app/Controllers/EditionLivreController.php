@@ -18,5 +18,6 @@ class EditionLivreController  extends AbstractController
         }
 
         $this->render("editionLivre", [], "Modifier les informations");
+        return;
     }
 }

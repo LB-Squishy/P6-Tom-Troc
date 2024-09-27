@@ -19,13 +19,13 @@ class AccueilController extends AbstractController
             $data['email'] = $user->getEmail();
             $data['miniature_profil_url'] = $user->getMiniatureProfilUrl();
             $data['date_inscription'] = $user->getDateInscription();
-            var_dump($data);
         } else {
             $data['email'] = 'Non connecté';
             $data['miniature_profil_url'] = 'Non disponible';
             $data['date_inscription'] = 'Non disponible';
         }
 
-        $this->render("accueil",  $data, "Rejoignez nos lecteurs passionés");
+        $this->render("accueil", $data, "Rejoignez nos lecteurs passionés");
+        return;
     }
 }

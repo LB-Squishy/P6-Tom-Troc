@@ -19,5 +19,6 @@ class MessagerieController extends AbstractController
         }
 
         $this->render("messagerie", [], "Messagerie");
+        return;
     }
 }

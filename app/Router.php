@@ -16,12 +16,15 @@ class Router
     /**
      * Cette méthode permet de dispatcher l'action demandée par l'utilisateur.
      * @param string $action : l'action demandée (par défaut "accueil" si aucune action n'est spécifiée).
+     * @param string $pseudo : le pseudo demandé.
      */
     public function dispatch()
     {
         // On récupère l'action demandée par l'utilisateur.
         // Si aucune action n'est demandée, on affiche la page d'accueil.
-        $action = AbstractController::request('action', 'accueil');
+        $action = rtrim(AbstractController::request('action', 'accueil'), '/');
+        // On récupère le pseudo demandée par l'utilisateur.
+        $pseudo =  AbstractController::request('pseudo', null);
 
         // Try catch global pour gérer les erreurs
         try {
@@ -37,7 +40,11 @@ class Router
                     (new LivreController())->showLivre();
                     break;
                 case 'compte-public':
-                    (new ComptePublicController())->showComptePublic();
+                    if ($pseudo) {
+                        (new ComptePublicController())->showComptePublic($pseudo);
+                    } else {
+                        (new NotFoundController())->showNotFound();
+                    }
                     break;
                 case 'connexion':
                     (new ConnexionController())->showConnexion();

@@ -13,11 +13,19 @@ class MonCompteController extends AbstractController
     public function showMonCompte(): void
     {
 
-        if (!isset($_SESSION["user"])) {
+        $user = $_SESSION["user"] ?? null;
+        $data = [];
+
+        if ($user) {
+            $data['email'] = $user->getEmail();
+            $data['miniature_profil_url'] = $user->getMiniatureProfilUrl();
+            $data['date_inscription'] = $user->getDateInscription();
+        } else {
             header('Location: error404');
             exit();
         }
 
-        $this->render("monCompte", [], "Mon Compte");
+        $this->render("monCompte", $data, "Mon Compte");
+        return;
     }
 }

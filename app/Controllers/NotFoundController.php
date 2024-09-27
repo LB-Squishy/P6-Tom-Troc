@@ -13,5 +13,6 @@ class NotFoundController extends AbstractController
     public function showNotFound(): void
     {
         $this->render("Error404", [], "Page d'erreur 404");
+        return;
     }
 }
