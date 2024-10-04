@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\AbstractController;
 use App\Models\Managers\BookManager;
+use App\Models\Managers\UserManager;
 
 class MonCompteController extends AbstractController
 {
@@ -33,6 +34,54 @@ class MonCompteController extends AbstractController
         }
         $this->render("monCompte", $data, "Mon Compte");
         return;
+    }
+
+    /**
+     * Met à jour les infos d'un utilisateur.
+     * @return void
+     */
+    public function majInfosUtilisateur(): void
+    {
+        $user = $_SESSION["user"] ?? null;
+
+        if ($user) {
+
+            $pseudo = $_POST["pseudo"] ?? "";
+            $email = $_POST["email"] ?? "";
+            $password = $_POST["password"] ?? "";
+
+            if (!empty($pseudo) && !empty($email) && !empty($password)) {
+                if ($password === "••••••••••") {
+                    //garde l'ancien mdp
+                    $password = $user->getPassword();
+                } else {
+                    //hash le nouveau mdp
+                    $password = password_hash($password, PASSWORD_BCRYPT);
+                }
+
+                $user->setPseudo($pseudo);
+                $user->setEmail($email);
+                $user->setPassword($password);
+
+                $userManager = new UserManager();
+                $updateSuccess = $userManager->updateUser($user);
+
+                if ($updateSuccess) {
+                    $_SESSION["user"] = $user;
+                    header('Location: /mon-compte');
+                    exit();
+                } else {
+                    $error = "Une erreur est survenue lors de la mise à jour.";
+                    $this->render("monCompte", ["error" => $error ?? ""], "Mon Compte");
+                }
+            } else {
+                $error = "Veuillez compléter tout les champs.";
+                $this->render("monCompte", ["error" => $error ?? ""], "Mon Compte");
+            }
+        } else {
+            header('Location: /connexion');
+            exit();
+        }
     }
 
     /**

@@ -38,10 +38,34 @@ section {
   margin: 0 !important;
 }
 
+.form-label {
+  color: #a6a6a6 !important;
+}
+
+.form-control {
+  height: 50px;
+  border: 1px solid #f0f0f0 !important;
+}
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 171, 103, 0.411) !important;
+}
+
 .btn-primary {
   background-color: #00ab67 !important;
+  border-radius: 10px !important;
   border-color: #00ab67 !important;
   color: white !important;
+  height: 63px !important;
+  font-weight: 600 !important;
+  align-content: center;
+}
+
+.btn-secondary {
+  background-color: #f5f3ef !important;
+  border-radius: 10px !important;
+  border-color: #00ab67 !important;
+  color: #00ab67 !important;
+  width: 150px !important;
   height: 63px !important;
   font-weight: 600 !important;
   align-content: center;
@@ -69,16 +93,8 @@ footer {
   }
 }
 
-.form-label {
-  color: #a6a6a6 !important;
-}
-
 .form-control {
-  height: 50px;
-  border: 1px solid #f0f0f0 !important;
-}
-.form-control:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 171, 103, 0.411) !important;
+  background-color: white !important;
 }
 
 .moncompte-container {
@@ -103,6 +119,17 @@ footer {
   margin-top: 48px;
   margin-bottom: 36px;
 }
+.moncompte-container .moncompte-section__section-infos {
+  width: 322px;
+  padding: 36px 0;
+}
+.moncompte-container .moncompte-section__section-infos--title {
+  font-size: 16px !important;
+  margin-bottom: 26px !important;
+}
+.moncompte-container .moncompte-section__section-infos--form-control {
+  background-color: #edf2f6 !important;
+}
 .moncompte-container .moncompte-section__section-book {
   display: grid !important;
   gap: 16px !important;
@@ -118,8 +145,9 @@ footer {
   grid-template-columns: 78px 1fr 1fr 1fr 1fr 1fr;
   gap: 80px;
   padding: 33px 66px 8px 66px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
+  text-transform: uppercase;
   border-bottom: 1px solid #edf2f6;
 }
 .moncompte-container .moncompte-section__section-book .book-card-admin {

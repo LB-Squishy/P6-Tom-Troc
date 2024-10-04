@@ -27,6 +27,18 @@ class UserManager extends AbstractManager
         return $this->create($data);
     }
 
+    // Met à jour les infos d'un utilisateur
+    public function updateUser(User $user): bool
+    {
+        $data = [
+            "id" => $user->getId(),
+            "email" => $user->getEmail(),
+            "password" => $user->getPassword(),
+            "pseudo" => $user->getPseudo(),
+        ];
+        return $this->update($data);
+    }
+
     // Récupère un utilisateur par son email
     public function getUserByEmail(string $email): ?User
     {

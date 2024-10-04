@@ -19,6 +19,15 @@
             margin-bottom: 36px;
         }
         &__section-infos {
+            width: 322px;
+            padding: 36px 0;
+            &--title {
+                font-size: 16px !important;
+                margin-bottom: 26px !important;
+            }
+            &--form-control {
+                background-color: $background-secondary-color !important;
+            }
         }
         &__section-book {
             display: grid !important;
@@ -32,8 +41,9 @@
                 grid-template-columns: 78px 1fr 1fr 1fr 1fr 1fr;
                 gap: 80px;
                 padding: 33px 66px 8px 66px;
-                font-size: 12px;
+                font-size: 10px;
                 font-weight: 600;
+                text-transform: uppercase;
                 border-bottom: 1px solid $background-secondary-color;
             }
             .book-card-admin {

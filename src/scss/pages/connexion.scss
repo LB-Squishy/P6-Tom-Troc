@@ -5,14 +5,6 @@
     }
 }
 
-.form-label {
-    color: #a6a6a6 !important;
-}
-
 .form-control {
-    height: 50px;
-    border: 1px solid #f0f0f0 !important;
-    &:focus {
-        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.411) !important;
-    }
+    background-color: white !important;
 }
