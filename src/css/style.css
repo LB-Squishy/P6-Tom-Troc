@@ -104,20 +104,35 @@ footer {
   margin-bottom: 36px;
 }
 .moncompte-container .moncompte-section__section-book {
-  display: flex !important;
-  flex-direction: column !important;
+  display: grid !important;
+  gap: 16px !important;
+  width: 100%;
 }
 @media (min-width: 1200px) {
   .moncompte-container .moncompte-section__section-book {
     flex-direction: column !important;
   }
 }
-.moncompte-container .moncompte-section__section-book .book-card-admin {
-  display: flex;
-  flex-direction: column !important;
-  align-items: center;
+.moncompte-container .moncompte-section__section-book--header {
+  display: grid;
+  grid-template-columns: 78px 1fr 1fr 1fr 1fr 1fr;
   gap: 80px;
+  padding: 33px 66px 8px 66px;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #edf2f6;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin {
+  display: grid;
+  grid-template-columns: 78px 1fr 1fr 1fr 1fr 1fr;
+  gap: 80px;
+  align-items: center;
   padding: 26px 66px;
+}
+@media (min-width: 1200px) {
+  .moncompte-container .moncompte-section__section-book .book-card-admin {
+    flex-direction: row !important;
+  }
 }
 .moncompte-container .moncompte-section__section-book .book-card-admin__background-white {
   background-color: white;
@@ -125,10 +140,64 @@ footer {
 .moncompte-container .moncompte-section__section-book .book-card-admin__background-secondary {
   background-color: #edf2f6;
 }
-@media (min-width: 1200px) {
-  .moncompte-container .moncompte-section__section-book .book-card-admin {
-    flex-direction: row !important;
-  }
+.moncompte-container .moncompte-section__section-book .book-card-admin__image {
+  width: 78px !important;
+  height: 78px !important;
+  object-fit: cover;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__titre, .moncompte-container .moncompte-section__section-book .book-card-admin__auteur {
+  width: 128px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__description {
+  display: -webkit-box;
+  width: 128px;
+  height: auto;
+  font-size: 12px;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite {
+  color: white !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite--dispo, .moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite--nondispo {
+  border-radius: 9px;
+  max-width: 70px !important;
+  height: 18px !important;
+  text-align: center;
+  align-content: center;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite--dispo {
+  background-color: #6cc4a0 !important;
+  border-color: #6cc4a0 !important;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite--nondispo {
+  background-color: #c46c6c !important;
+  border-color: #c46c6c !important;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__action {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__action--editer:hover {
+  text-decoration: none !important;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__action--supprimer {
+  color: #c46c6c !important;
+}
+.moncompte-container .moncompte-section__section-book .book-card-admin__action--supprimer:hover {
+  text-decoration: none !important;
 }
 @media (min-width: 768px) {
   .moncompte-container {
@@ -139,32 +208,6 @@ footer {
   .moncompte-container section:nth-child(3) {
     grid-column: span 2 !important;
   }
-}
-
-.btn-dispo {
-  background-color: #6cc4a0 !important;
-  border-color: #6cc4a0 !important;
-  border-radius: 9px;
-  color: white !important;
-  min-width: 70px !important;
-  height: 18px !important;
-  font-size: 8.8px !important;
-  font-weight: 500 !important;
-  text-align: center;
-  align-content: center;
-}
-
-.btn-nondispo {
-  background-color: #c46c6c !important;
-  border-color: #c46c6c !important;
-  border-radius: 9px;
-  color: white !important;
-  min-width: 70px !important;
-  height: 18px !important;
-  font-size: 8.8px !important;
-  font-weight: 500 !important;
-  text-align: center;
-  align-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */

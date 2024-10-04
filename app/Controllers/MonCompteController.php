@@ -34,4 +34,25 @@ class MonCompteController extends AbstractController
         $this->render("monCompte", $data, "Mon Compte");
         return;
     }
+
+    /**
+     * Supprime un livre.
+     * @return void
+     */
+    public function deleteLivre(): void
+    {
+        $user = $_SESSION["user"] ?? null;
+        if ($user) {
+            $book_id = $_GET['book_id'] ?? null;
+            if ($book_id) {
+                $bookManager = new BookManager();
+                $bookManager->deleteBookByBookId($book_id);
+            }
+            header('Location: /mon-compte');
+            exit();
+        } else {
+            header('Location: error404');
+            exit();
+        }
+    }
 }

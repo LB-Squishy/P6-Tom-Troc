@@ -21,26 +21,98 @@
         &__section-infos {
         }
         &__section-book {
-            display: flex !important;
-            flex-direction: column !important;
-
+            display: grid !important;
+            gap: 16px !important;
+            width: 100%;
             @include Extra-large {
                 flex-direction: column !important;
             }
-            .book-card-admin {
-                display: flex;
-                flex-direction: column !important;
-                align-items: center;
+            &--header {
+                display: grid;
+                grid-template-columns: 78px 1fr 1fr 1fr 1fr 1fr;
                 gap: 80px;
+                padding: 33px 66px 8px 66px;
+                font-size: 12px;
+                font-weight: 600;
+                border-bottom: 1px solid $background-secondary-color;
+            }
+            .book-card-admin {
+                display: grid;
+                grid-template-columns: 78px 1fr 1fr 1fr 1fr 1fr;
+                gap: 80px;
+                align-items: center;
                 padding: 26px 66px;
+                @include Extra-large {
+                    flex-direction: row !important;
+                }
                 &__background-white {
                     background-color: white;
                 }
                 &__background-secondary {
                     background-color: $background-secondary-color;
                 }
-                @include Extra-large {
-                    flex-direction: row !important;
+                &__image {
+                    width: 78px !important;
+                    height: 78px !important;
+                    object-fit: cover;
+                }
+                &__titre,
+                &__auteur {
+                    width: 128px;
+                    font-size: 12px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                &__description {
+                    display: -webkit-box;
+                    width: 128px;
+                    height: auto;
+                    font-size: 12px;
+                    line-clamp: 3;
+                    -webkit-line-clamp: 3;
+                    box-orient: vertical;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: normal;
+                }
+                &__disponibilite {
+                    color: white !important;
+                    font-size: 10px !important;
+                    font-weight: 500 !important;
+                    &--dispo,
+                    &--nondispo {
+                        border-radius: 9px;
+                        max-width: 70px !important;
+                        height: 18px !important;
+                        text-align: center;
+                        align-content: center;
+                    }
+                    &--dispo {
+                        background-color: $tag-true-color !important;
+                        border-color: $tag-true-color !important;
+                    }
+                    &--nondispo {
+                        background-color: $tag-false-color !important;
+                        border-color: $tag-false-color !important;
+                    }
+                }
+                &__action {
+                    display: flex;
+                    gap: 28px;
+                    font-size: 12px;
+                    &--editer {
+                        &:hover {
+                            text-decoration: none !important;
+                        }
+                    }
+                    &--supprimer {
+                        color: $tag-false-color !important;
+                        &:hover {
+                            text-decoration: none !important;
+                        }
+                    }
                 }
             }
         }
@@ -53,30 +125,4 @@
             grid-column: span 2 !important;
         }
     }
-}
-
-.btn-dispo {
-    background-color: $tag-true-color !important;
-    border-color: $tag-true-color !important;
-    border-radius: 9px;
-    color: white !important;
-    min-width: 70px !important;
-    height: 18px !important;
-    font-size: 8.8px !important;
-    font-weight: 500 !important;
-    text-align: center;
-    align-content: center;
-}
-
-.btn-nondispo {
-    background-color: $tag-false-color !important;
-    border-color: $tag-false-color !important;
-    border-radius: 9px;
-    color: white !important;
-    min-width: 70px !important;
-    height: 18px !important;
-    font-size: 8.8px !important;
-    font-weight: 500 !important;
-    text-align: center;
-    align-content: center;
 }

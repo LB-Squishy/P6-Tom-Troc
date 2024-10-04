@@ -67,6 +67,9 @@ class Router
                 case 'mon-compte':
                     (new MonCompteController())->showMonCompte();
                     break;
+                case 'suppression-livre':
+                    (new MonCompteController())->deleteLivre();
+                    break;
                 case 'edition-livre':
                     (new EditionLivreController())->showEditionLivre();
                     break;
