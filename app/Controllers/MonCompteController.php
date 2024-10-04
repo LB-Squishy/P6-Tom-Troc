@@ -28,7 +28,7 @@ class MonCompteController extends AbstractController
             $bookManager = new BookManager();
             $data['books'] = $bookManager->getBookByUserId($user->getId());
         } else {
-            header('Location: error404');
+            header('Location: /error404');
             exit();
         }
         $this->render("monCompte", $data, "Mon Compte");
@@ -42,16 +42,28 @@ class MonCompteController extends AbstractController
     public function deleteLivre(): void
     {
         $user = $_SESSION["user"] ?? null;
+
         if ($user) {
+            // Récupère l'id du livre depuis la requête
             $book_id = $_GET['book_id'] ?? null;
+
             if ($book_id) {
                 $bookManager = new BookManager();
-                $bookManager->deleteBookByBookId($book_id);
+                // Récupère le livre depuis l'id fourni
+                $book = $bookManager->getBookById($book_id);
+
+                // Contrôle le fait que l'utilisateur est bien le propriétaire du livre
+                if ($book && $book->getUserId() === $user->getId()) {
+                    $bookManager->deleteBookById($book_id);
+                    header('Location: /mon-compte');
+                    exit();
+                } else {
+                    header('Location: /error404');
+                    exit();
+                }
             }
-            header('Location: /mon-compte');
-            exit();
         } else {
-            header('Location: error404');
+            header('Location: /error404');
             exit();
         }
     }
