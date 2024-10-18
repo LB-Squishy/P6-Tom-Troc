@@ -48,4 +48,14 @@ class BookManager extends AbstractManager
         $stmt = $this->db->prepare("DELETE FROM {$this->table} WHERE id = :book_id");
         $stmt->execute(['book_id' => $book_id]);
     }
+
+    // Met a jour la disponibilité d'un livre
+    public function updateBookDispoById(int $book_id, bool $disponibilite)
+    {
+        $stmt = $this->db->prepare("UPDATE {$this->table} SET disponibilite = :disponibilite WHERE id = :book_id");
+        $stmt->execute([
+            'book_id' => $book_id,
+            'disponibilite' => $disponibilite
+        ]);
+    }
 }

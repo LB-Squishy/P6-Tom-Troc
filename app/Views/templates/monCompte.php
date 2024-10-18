@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Template pour afficher la page Mon Compte'.
+ * Template pour afficher la page Mon Compte.
  */
+require_once './app/Services/Anciennete.php'
 ?>
 
 <div class="container margin-container">
@@ -10,18 +11,18 @@
     <div class="moncompte-container">
         <section class="moncompte-section">
             <div class="moncompte-section__section-member">
-                <div>
+                <div class="moncompte-section__section-member--photo">
                     <img class="mb-2 profil-miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($miniature_profil_url, ENT_QUOTES, 'UTF-8'); ?>" alt="Photo de profil" />
-                    <a href="/mon-compte/edit-miniature">modifier</a>
+                    <a href="/mon-compte/edit-miniature" class="moncompte-section__section-member--modifier">modifier</a>
                 </div>
                 <div>
-                    <div>line</div>
+                    <hr class="moncompte-section__section-member--ligne" />
                 </div>
                 <div>
-                    <p><?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?></p>
-                    <p><?= htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8'); ?></p>
-                    <p>BIBLIOTHEQUE</p>
-                    <p>LOGO x livres</p>
+                    <p class="moncompte-section__section-member--pseudo"><?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p class="moncompte-section__section-member--anciennete">Membre depuis <?= calculerAnciennete(htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8')); ?></p>
+                    <p class="moncompte-section__section-member--biblio">BIBLIOTHEQUE</p>
+                    <p><i class="fa-solid fa-lines-leaning"></i></i></i> <?= count($books); ?> livres</p>
                 </div>
             </div>
         </section>
@@ -41,8 +42,26 @@
                         <label class="form-label" for="pseudo">Pseudo</label>
                         <input class="moncompte-section__section-infos--form-control form-control" id="pseudo" type="text" name="pseudo" value="<?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?>" required>
                     </div>
-                    <button class="btn btn-secondary" type="submit">Enregistrer</button>
+                    <button class="btn btn-secondary" type="button" id="showModalButton" data-bs-toggle="modal" data-bs-target="#confirmationModal">Enregistrer</button>
                 </form>
+            </div>
+            <!-- Modale de confirmation -->
+            <div class="modal fade" id="confirmationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="confirmationMessage">Êtes-vous sûr de vouloir modifier vos informations utilisateur ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="cancelButton">Annuler</button>
+                            <button type="submit" class="btn btn-primary" id="confirmButton">Confirmer</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="moncompte-section">
@@ -65,9 +84,15 @@
                             <p class="book-card-admin__description"><?= htmlspecialchars($book->getDescription(), ENT_QUOTES, 'UTF-8'); ?></p>
                             <div class="book-card-admin__disponibilite">
                                 <?php if ($book->getDisponibilite()) : ?>
-                                    <div class="book-card-admin__disponibilite--dispo">disponible</div>
+                                    <div class="book-card-admin__disponibilite--dispo">
+                                        <a class="book-card-admin__disponibilite" href="/mon-compte/disponibilite-livre?book_id=<?= htmlspecialchars($book->getId(), ENT_QUOTES, 'UTF-8'); ?>">disponible
+                                        </a>
+                                    </div>
                                 <?php else : ?>
-                                    <div class="book-card-admin__disponibilite--nondispo">non dispo.</div>
+                                    <div class="book-card-admin__disponibilite--nondispo">
+                                        <a class="book-card-admin__disponibilite" href="/mon-compte/disponibilite-livre?book_id=<?= htmlspecialchars($book->getId(), ENT_QUOTES, 'UTF-8'); ?>">non dispo.
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                             <div class="book-card-admin__action">

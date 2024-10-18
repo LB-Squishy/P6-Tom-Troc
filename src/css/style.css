@@ -26,7 +26,7 @@ h1 {
 }
 
 a {
-  color: inherit !important;
+  color: black !important;
 }
 
 P {
@@ -112,12 +112,37 @@ footer {
 .moncompte-container .moncompte-section__section-member {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 48px;
   text-align: center;
-  width: 135px !important;
   height: 367px !important;
   margin-top: 48px;
-  margin-bottom: 36px;
+}
+.moncompte-container .moncompte-section__section-member--photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.moncompte-container .moncompte-section__section-member--modifier {
+  color: #a6a6a6 !important;
+}
+.moncompte-container .moncompte-section__section-member--ligne {
+  width: 242px;
+  border: none;
+  margin: 0;
+  border-top: 1px solid #a6a6a6 !important;
+}
+.moncompte-container .moncompte-section__section-member--pseudo {
+  font-family: "Playfair Display" !important;
+  font-size: 24px !important;
+  margin-bottom: 11px !important;
+}
+.moncompte-container .moncompte-section__section-member--anciennete {
+  color: #a6a6a6;
+  margin-bottom: 21px !important;
+}
+.moncompte-container .moncompte-section__section-member--biblio {
+  font-size: 8px !important;
+  font-weight: 600 !important;
 }
 .moncompte-container .moncompte-section__section-infos {
   width: 322px;
@@ -197,6 +222,7 @@ footer {
   color: white !important;
   font-size: 10px !important;
   font-weight: 500 !important;
+  text-decoration: none !important;
 }
 .moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite--dispo, .moncompte-container .moncompte-section__section-book .book-card-admin__disponibilite--nondispo {
   border-radius: 9px;

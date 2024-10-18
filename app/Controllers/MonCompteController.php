@@ -116,4 +116,38 @@ class MonCompteController extends AbstractController
             exit();
         }
     }
+
+    /**
+     * Change la disponibilite d'un livre.
+     * @return void
+     */
+    public function toggleDisponibiliteLivre(): void
+    {
+        $user = $_SESSION["user"] ?? null;
+
+        if ($user) {
+            // Récupère l'id du livre depuis la requête
+            $book_id = $_GET['book_id'] ?? null;
+
+            if ($book_id) {
+                $bookManager = new BookManager();
+                // Récupère le livre depuis l'id fourni
+                $book = $bookManager->getBookById($book_id);
+
+                // Contrôle le fait que l'utilisateur est bien le propriétaire du livre
+                if ($book && $book->getUserId() === $user->getId()) {
+                    $newDisponibilite = !$book->getDisponibilite();
+                    $bookManager->updateBookDispoById($book_id, $newDisponibilite);
+                    header('Location: /mon-compte');
+                    exit();
+                } else {
+                    header('Location: /error404');
+                    exit();
+                }
+            }
+        } else {
+            header('Location: /error404');
+            exit();
+        }
+    }
 }
