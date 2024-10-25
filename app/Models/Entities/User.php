@@ -90,7 +90,7 @@ class User extends AbstractEntity
 
     /**
      * Setter pour le miniature_profil_url.
-     * @param string $date_inscription
+     * @param string $miniature_profil_url
      */
     public function setMiniatureProfilUrl(string $miniature_profil_url): void
     {

@@ -13,7 +13,27 @@ require_once './app/Services/Anciennete.php'
             <div class="moncompte-section__section-member">
                 <div class="moncompte-section__section-member--photo">
                     <img class="mb-2 profil-miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($miniature_profil_url, ENT_QUOTES, 'UTF-8'); ?>" alt="Photo de profil" />
-                    <a href="/mon-compte/edit-miniature" class="moncompte-section__section-member--modifier">modifier</a>
+                    <a class="moncompte-section__section-member--modifier" data-bs-toggle="modal" data-bs-target="#photoModal">modifier</a>
+                </div>
+                <!-- Modale pour modifier la photo de profil -->
+                <div class="modal fade" id="photoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="photoModalLabel">Changer la photo de profil</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="photoForm" method="POST" action="/mon-compte/edit-miniature" enctype="multipart/form-data">
+                                    <input type="file" name="photo" accept="image/*" required>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="cancelPhotoButton">Annuler</button>
+                                <button type="button" class="btn btn-primary" id="confirmPhotoButton">Confirmer</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <hr class="moncompte-section__section-member--ligne" />
@@ -29,7 +49,7 @@ require_once './app/Services/Anciennete.php'
         <section class="moncompte-section">
             <div class="moncompte-section__section-infos">
                 <p class="moncompte-section__section-infos--title">Vos informations personnelles</p>
-                <form method="POST" action="/mon-compte/maj-infos-utilisateur">
+                <form id="infoUserForm" method="POST" action="/mon-compte/maj-infos-utilisateur">
                     <div class="mb-3">
                         <label class="form-label" for="email">Adresse email</label>
                         <input class="moncompte-section__section-infos--form-control form-control" id="email" type="email" name="email" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>" required>
@@ -58,7 +78,7 @@ require_once './app/Services/Anciennete.php'
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" id="cancelButton">Annuler</button>
-                            <button type="submit" class="btn btn-primary" id="confirmButton">Confirmer</button>
+                            <button type="button" class="btn btn-primary" id="confirmButton">Confirmer</button>
                         </div>
                     </div>
                 </div>

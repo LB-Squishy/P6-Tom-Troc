@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\AbstractController;
 use App\Models\Managers\BookManager;
 use App\Models\Managers\UserManager;
+use App\Services\Utils;
 
 class MonCompteController extends AbstractController
 {
@@ -34,6 +35,54 @@ class MonCompteController extends AbstractController
         }
         $this->render("monCompte", $data, "Mon Compte");
         return;
+    }
+
+    public function editMiniature()
+    {
+        $user = $_SESSION["user"] ?? null;
+
+        if ($user) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
+                $photo = $_FILES['photo'];
+
+                // Valider le fichier
+                if (Utils::validatePhoto($photo)) {
+                    $destination = dirname(__DIR__, 2) . '/src/images/uploads/profile/' . $photo['name'];
+                    if (move_uploaded_file($photo['tmp_name'], $destination)) {
+                        $user->setMiniatureProfilUrl($photo['name']);
+
+                        $userManager = new UserManager();
+                        $updateSuccess = $userManager->updateProfilePhoto($user);
+
+                        if ($updateSuccess) {
+                            $_SESSION["user"] = $user;
+                            $_SESSION['success'] = 'Photo de profil mise à jour avec succès.'; // Ajout d'un message de succès
+                            header('Location: /mon-compte');
+                            exit();
+                        } else {
+                            // Gérer l'erreur de mise à jour en BDD
+                            header('Location: /mon-compte');
+                            $_SESSION['error'] = 'Erreur lors de la mise à jour de la photo dans la base de données.';
+                        }
+                    } else {
+                        // Gérer l'erreur d'upload
+                        header('Location: /mon-compte');
+                        $_SESSION['error'] = 'Erreur lors de l\'upload de la photo.';
+                    }
+                } else {
+                    header('Location: /mon-compte');
+                    $_SESSION['error'] = 'La photo sélectionnée n\'est pas valide.';
+                }
+            }
+        } else {
+            // Afficher un message d'erreur si l'utilisateur n'est pas connecté
+            header('Location: /mon-compte');
+            $_SESSION['error'] = 'Vous devez être connecté pour modifier votre photo de profil.';
+        }
+
+        // Renvoyer à la vue courante pour afficher les erreurs
+        header('Location: /mon-compte');
+        exit();
     }
 
     /**

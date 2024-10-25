@@ -67,6 +67,9 @@ class Router
                 case 'mon-compte':
                     (new MonCompteController())->showMonCompte();
                     break;
+                case 'mon-compte/edit-miniature':
+                    (new MonCompteController())->editMiniature();
+                    break;
                 case 'mon-compte/maj-infos-utilisateur':
                     (new MonCompteController())->majInfosUtilisateur();
                     break;

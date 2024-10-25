@@ -39,6 +39,16 @@ class UserManager extends AbstractManager
         return $this->update($data);
     }
 
+    // Met à jour la photo d'un utilisateur
+    public function updateProfilePhoto(User $user): bool
+    {
+        $data = [
+            "id" => $user->getId(),
+            "miniature_profil_url" => $user->getMiniatureProfilUrl(),
+        ];
+        return $this->update($data);
+    }
+
     // Récupère un utilisateur par son email
     public function getUserByEmail(string $email): ?User
     {
