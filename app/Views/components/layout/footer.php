@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template pour afficher le footer'.
+ * Template pour afficher le footer.
  */
 ?>
 <footer class="d-flex flex-wrap justify-content-end align-items-center me-4" style="height: 80px;">

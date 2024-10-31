@@ -10,11 +10,27 @@ namespace App\Services;
 
 class Utils
 {
+    // Valide le format et les dimensions d'une photo de profil
     public static function validatePhoto($photo)
     {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
         $maxSize = 2 * 1024 * 1024; // 2 MB
 
-        return in_array($photo['type'], $allowedTypes) && $photo['size'] <= $maxSize;
+        $badType = !in_array($photo['type'], $allowedTypes);
+        $badSize = $photo['size'] > $maxSize;
+
+        if ($badType && $badSize) {
+            return 'Merci de mettre une photo de type jpeg, png ou webp, et de ne pas dépasser les 1024px par 1024px.';
+        }
+
+        if ($badType) {
+            return 'Merci de mettre une photo de type jpeg, png ou webp.';
+        }
+
+        if ($badSize) {
+            return 'Merci de sélectionner une photo qui ne dépasse pas les 1024px par 1024px.';
+        }
+
+        return true;
     }
 }

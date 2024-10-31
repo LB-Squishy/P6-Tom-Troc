@@ -47,6 +47,33 @@ class AbstractController
     }
 
     /**
+     * Redirige avec un message d'erreur
+     * @param string $type : type de message (success ou error)
+     * @param string $message : le message d'erreur.
+     * @param string $location : Route de redirection
+     * @return void
+     */
+    public static function redirectWithMessage(string $type, string $message, string $location): void
+    {
+        $_SESSION[$type] = $message;
+        header("Location: $location");
+        exit();
+    }
+
+    /**
+     * Vérifie si l'utilisateur est connecté
+     * @return mixed : L'user ou null si non connecté
+     */
+    protected function checkUser(): mixed
+    {
+        $user = $_SESSION["user"] ?? null;
+        if (!$user) {
+            $this->redirectWithMessage('error', 'Utilisateur non connecté. Merci de vous connecter afin de pouvoir accéder à votre espace.', '/connexion');
+        }
+        return $user;
+    }
+
+    /**
      * Cette méthode permet de récupérer une variable de la superglobale $_REQUEST.
      * Si cette variable n'est pas définie, on retourne la valeur null (par défaut)
      * ou celle qui est passée en paramètre si elle existe.

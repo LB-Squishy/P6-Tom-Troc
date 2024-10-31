@@ -1,11 +1,7 @@
 <?php
 
 /**
- * Ce fichier est le layout principal qui "contient" ce qui aura été généré par les autres vues.  
- * 
- * Les variables qui doivent impérativement être définie sont : 
- * $title string : le titre de la page.
- * $content string : le contenu de la page. 
+ * LAYOUT PRINCIPAL
  */
 
 ?>
@@ -27,36 +23,13 @@
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
+    <!-- Affichage du header -->
     <?php include "./app/Views/components/layout/header.php"; ?>
-
-    <!-- Affichage des messages d'erreur et de succès -->
-    <?php if (isset($_SESSION['error'])): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <?= htmlspecialchars($_SESSION['error']) ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php unset($_SESSION['error']);
-        ?>
-    <?php endif; ?>
-
-    <?php if (isset($_SESSION['success'])): ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= htmlspecialchars($_SESSION['success']) ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php unset($_SESSION['success']);
-        ?>
-    <?php endif; ?>
-
+    <!-- Affichage du message d'erreur ou de success -->
+    <?php include "./app/Views/components/error.php"; ?>
     <!-- Affichage du contenu de la page -->
-    <main>
-        <?= $content ?>
-    </main>
-
+    <main> <?= $content ?> </main>
+    <!-- Affichage du footer -->
     <?php include "./app/Views/components/layout/footer.php"; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
