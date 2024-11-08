@@ -56,7 +56,7 @@ require_once './app/Services/Anciennete.php'
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="password">Mot de passe</label>
-                        <input class="moncompte-section__section-infos--form-control form-control" id="password" type="password" name="password" value="••••••••••" required>
+                        <input class="moncompte-section__section-infos--form-control form-control" id="password" type="password" name="password" value="" placeholder="••••••••••" required>
                     </div>
                     <div class="mb-5">
                         <label class="form-label" for="pseudo">Pseudo</label>

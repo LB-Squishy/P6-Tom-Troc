@@ -77,8 +77,8 @@ class MonCompteController extends AbstractController
         $pseudo = $_POST["pseudo"] ?? "";
         $email = $_POST["email"] ?? "";
         $password = $_POST["password"] ?? "";
-        if (!empty($pseudo) && !empty($email) && !empty($password)) {
-            if ($password === "••••••••••") {
+        if (!empty($pseudo) && !empty($email)) {
+            if ($password === "") {
                 //garde l'ancien mdp
                 $password = $user->getPassword();
             } else {
