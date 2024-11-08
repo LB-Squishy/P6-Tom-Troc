@@ -210,6 +210,7 @@ footer {
   width: 128px;
   height: auto;
   font-size: 12px;
+  font-style: italic;
   line-clamp: 3;
   -webkit-line-clamp: 3;
   box-orient: vertical;
