@@ -96,21 +96,19 @@ class MonCompteController extends AbstractController
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errorMessages[] = "L'email fourni est invalide.";
         }
-        if (empty($password)) {
-            $errorMessages[] = "Un mot de passe est requis.";
-        } elseif (strlen($password) < 8) {
-            $errorMessages[] = "Le mot de passe doit contenir au moins 8 caractères.";
-        }
-        if (!empty($errorMessages)) {
-            $this->redirectWithMessage('error', implode(' ', $errorMessages), '/mon-compte');
-        }
-        //Gèrer le mdp
+        //Gestion du mot de passe
         if (empty($password)) {
             //garde l'ancien mdp
             $password = $user->getPassword();
-        } else {
+        } elseif (strlen($password) < 8) {
+            $errorMessages[] = "Le mot de passe doit contenir au moins 8 caractères.";
+        } elseif (strlen($password) >= 8) {
             //hash le nouveau mdp
             $password = password_hash($password, PASSWORD_BCRYPT);
+        }
+        //Gestion des erreurs du formulaire
+        if (!empty($errorMessages)) {
+            $this->redirectWithMessage('error', implode(' ', $errorMessages), '/mon-compte');
         }
         //Mettre à jour l'entité
         $user->setPseudo($pseudo);
