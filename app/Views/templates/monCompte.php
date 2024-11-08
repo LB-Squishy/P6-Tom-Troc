@@ -63,6 +63,8 @@ require_once './app/Services/Anciennete.php'
                         <input class="moncompte-section__section-infos--form-control form-control" id="pseudo" type="text" name="pseudo" value="<?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?>" required>
                     </div>
                     <button class="btn btn-secondary" type="button" id="showModalButton" data-bs-toggle="modal" data-bs-target="#confirmationModal">Enregistrer</button>
+                    <!-- Bouton pour rediriger vers le compte public -->
+                    <a href="/compte-public/?pseudo=<?= urlencode($pseudo) ?>" class="btn btn-secondary">Voir mon compte public</a>
                 </form>
             </div>
             <!-- Modale de confirmation -->
