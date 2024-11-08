@@ -23,28 +23,40 @@ class InscriptionController extends AbstractController
     public function inscription(): void
     {
         $userManager = new UserManager();
-
+        //Récupère les données du formulaire
         $pseudo = $_POST["pseudo"] ?? "";
         $email = $_POST["email"] ?? "";
         $password = $_POST["password"] ?? "";
-
-        if (!empty($pseudo) && !empty($email) && !empty($password)) {
-            // Hash du mdp
-            $password = password_hash($password, PASSWORD_BCRYPT);
-            // Création entité USer
-            $user = new User();
-            $user->setPseudo($pseudo);
-            $user->setEmail($email);
-            $user->setPassword($password);
-            if ($userManager->newUser($user)) {
-                header('Location: connexion');
-                exit();
-            } else {
-                $error = "Echec de l'inscription";
-            }
+        $errorMessages = [];
+        //Vérifie les champs
+        if (empty($pseudo)) {
+            $errorMessages[] = "Un pseudo est requis.";
         }
-
-        $this->render("inscription", ["error" => $error ?? ""], "Soumission d'inscription");
-        return;
+        if (empty($email)) {
+            $errorMessages[] = "Un email est requis.";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errorMessages[] = "L'email fourni est invalide.";
+        }
+        if (empty($password)) {
+            $errorMessages[] = "Un mot de passe est requis.";
+        } elseif (strlen($password) < 8) {
+            $errorMessages[] = "Le mot de passe doit contenir au moins 8 caractères.";
+        }
+        if (!empty($errorMessages)) {
+            $this->redirectWithMessage('error', implode(' ', $errorMessages), '/inscription');
+        }
+        //Hash du mdp
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        //Création l'entité User
+        $user = new User();
+        $user->setPseudo($pseudo);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        //Enregistre un nouvel User en BDD
+        if (!$userManager->newUser($user)) {
+            $this->redirectWithMessage('error', 'Echec de l\'inscription.', '/inscription');
+        }
+        //Rediriger avec success vers la page de connexion
+        $this->redirectWithMessage('success', 'Bienvenue ' . $pseudo . '! , vous pouvez maintenant vous connecter à votre compte utilisateur.', '/connexion');
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Services\View;
 use App\Controllers\{AbstractController, AccueilController, NosLivresController, LivreController, ComptePublicController, ConnexionController, InscriptionController, MessagerieController, MonCompteController, EditionLivreController, NotFoundController};
 
 require_once  'config/config.php';

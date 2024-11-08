@@ -22,25 +22,24 @@ class ConnexionController extends AbstractController
     public function connexion(): void
     {
         $userManager = new UserManager();
-
+        //Récupère les données du formulaire
         $email = $_POST["email"] ?? "";
         $password = $_POST["password"] ?? "";
-
-        if (!empty($email) && !empty($password)) {
-
-            // Récupère l'utilisateur
-            $user = $userManager->getUserByEmail($email);
-
-            if ($user && password_verify($password, $user->getPassword())) {
-                $_SESSION["user"] = $user;
-                header('Location: /mon-compte');
-                exit();
-            } else {
-                $error = "Echec de connexion";
-            }
+        //Vérifie les champs
+        if (empty($email) || empty($password)) {
+            $this->redirectWithMessage('error', 'Veuillez remplir tous les champs afin de vous connecter.', '/connexion');
         }
-        $this->render("connexion", ["error" => $error ?? ""], "Connexion non Valide");
-        return;
+        //Récupère l'utilisateur
+        $user = $userManager->getUserByEmail($email);
+        //Vérifie l'utilisateur et son mot de passe
+        if ($user && password_verify($password, $user->getPassword())) {
+            //connexion réussi
+            $_SESSION["user"] = $user;
+            $this->redirectWithMessage('success', 'Connexion réussi. Bienvenue ' . $user->getPseudo() . ' !', '/mon-compte');
+        } else {
+            //Echec de connexion
+            $this->redirectWithMessage('error', 'Echec de connexion. Veuillez saisir des identifiants corrects.', '/connexion');
+        }
     }
     /**
      * Deconnexion d'un utilisateur.
