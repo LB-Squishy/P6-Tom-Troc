@@ -43,6 +43,8 @@ require_once './app/Services/Anciennete.php'
                     <p class="moncompte-section__section-member--anciennete">Membre depuis <?= calculerAnciennete(htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8')); ?></p>
                     <p class="moncompte-section__section-member--biblio">BIBLIOTHEQUE</p>
                     <p><i class="fa-solid fa-lines-leaning"></i></i></i> <?= count($books); ?> livres</p>
+                    <!-- Bouton pour rediriger vers le compte public -->
+                    <a href="/compte-public/?pseudo=<?= urlencode($pseudo) ?>" class="moncompte-section__section-member--modifier">Compte public</a>
                 </div>
             </div>
         </section>
@@ -63,8 +65,6 @@ require_once './app/Services/Anciennete.php'
                         <input class="moncompte-section__section-infos--form-control form-control" id="pseudo" type="text" name="pseudo" value="<?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?>" required>
                     </div>
                     <button class="btn btn-secondary" type="button" id="showModalButton" data-bs-toggle="modal" data-bs-target="#confirmationModal">Enregistrer</button>
-                    <!-- Bouton pour rediriger vers le compte public -->
-                    <a href="/compte-public/?pseudo=<?= urlencode($pseudo) ?>" class="btn btn-secondary">Voir mon compte public</a>
                 </form>
             </div>
             <!-- Modale de confirmation -->

@@ -114,7 +114,7 @@ footer {
   flex-direction: column;
   gap: 48px;
   text-align: center;
-  height: 367px !important;
+  height: 508px;
   margin-top: 48px;
 }
 .moncompte-container .moncompte-section__section-member--photo {
@@ -211,8 +211,8 @@ footer {
   height: auto;
   font-size: 12px;
   font-style: italic;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
   box-orient: vertical;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -261,6 +261,178 @@ footer {
 }
 @media (min-width: 768px) {
   .moncompte-container section:nth-child(3) {
+    grid-column: span 2 !important;
+  }
+}
+
+.comptepublic-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.comptepublic-container {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 33px;
+  margin-top: 100px;
+}
+.comptepublic-container .comptepublic-section {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20px;
+}
+.comptepublic-container .comptepublic-section__section-member {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  text-align: center;
+  height: 579px !important;
+  margin: 48px 50px 0 50px;
+}
+.comptepublic-container .comptepublic-section__section-member--photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comptepublic-container .comptepublic-section__section-member--ligne {
+  width: 242px;
+  border: none;
+  margin: 0;
+  border-top: 1px solid #a6a6a6 !important;
+}
+.comptepublic-container .comptepublic-section__section-member--pseudo {
+  font-family: "Playfair Display" !important;
+  font-size: 24px !important;
+  margin-bottom: 11px !important;
+}
+.comptepublic-container .comptepublic-section__section-member--anciennete {
+  color: #a6a6a6;
+  margin-bottom: 21px !important;
+}
+.comptepublic-container .comptepublic-section__section-member--biblio {
+  font-size: 8px !important;
+  font-weight: 600 !important;
+}
+.comptepublic-container .comptepublic-section__section-member--count {
+  margin-bottom: 45px !important;
+}
+.comptepublic-container .comptepublic-section__section-member--btn {
+  width: 215px !important;
+}
+.comptepublic-container .comptepublic-section__section-book {
+  display: grid !important;
+  gap: 16px !important;
+  width: 100%;
+}
+@media (min-width: 1200px) {
+  .comptepublic-container .comptepublic-section__section-book {
+    flex-direction: column !important;
+  }
+}
+.comptepublic-container .comptepublic-section__section-book--header {
+  display: grid;
+  grid-template-columns: 78px 128px 128px 128px;
+  gap: 80px;
+  padding: 33px 66px 8px 66px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid #edf2f6;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin {
+  display: grid;
+  grid-template-columns: 78px 128px 128px 128px;
+  gap: 80px;
+  align-items: center;
+  padding: 26px 66px;
+}
+@media (min-width: 1200px) {
+  .comptepublic-container .comptepublic-section__section-book .book-card-admin {
+    flex-direction: row !important;
+  }
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__background-white {
+  background-color: white;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__background-secondary {
+  background-color: #edf2f6;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__image {
+  width: 78px !important;
+  height: 78px !important;
+  object-fit: cover;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__titre, .comptepublic-container .comptepublic-section__section-book .book-card-admin__auteur {
+  width: 128px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__description {
+  display: -webkit-box;
+  width: 128px;
+  height: auto;
+  font-size: 12px;
+  font-style: italic;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__disponibilite {
+  color: white !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__disponibilite--dispo, .comptepublic-container .comptepublic-section__section-book .book-card-admin__disponibilite--nondispo {
+  border-radius: 9px;
+  max-width: 70px !important;
+  height: 18px !important;
+  text-align: center;
+  align-content: center;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__disponibilite--dispo {
+  background-color: #6cc4a0 !important;
+  border-color: #6cc4a0 !important;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__disponibilite--nondispo {
+  background-color: #c46c6c !important;
+  border-color: #c46c6c !important;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__action {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__action--editer:hover {
+  text-decoration: none !important;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__action--supprimer {
+  color: #c46c6c !important;
+}
+.comptepublic-container .comptepublic-section__section-book .book-card-admin__action--supprimer:hover {
+  text-decoration: none !important;
+}
+@media (min-width: 768px) {
+  .comptepublic-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 768px) {
+  .comptepublic-container section:nth-child(3) {
     grid-column: span 2 !important;
   }
 }
