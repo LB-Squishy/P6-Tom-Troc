@@ -16,6 +16,25 @@ class BookManager extends AbstractManager
         $this->entityClass = Book::class; // Définir le nom de l'entité pour ce modèle
     }
 
+    // Récupère les x derniers livres
+    public function getLastBook(int $nombre_livre)
+    {
+        $stmt = $this->db->prepare("SELECT b.*, u.pseudo FROM {$this->table} AS b JOIN users AS u ON b.user_id = u.id ORDER BY date_ajout DESC LIMIT :nombre_livre");
+        $stmt->bindValue(':nombre_livre', $nombre_livre, \PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $books = [];
+        if ($data && $this->entityClass) {
+            foreach ($data as $bookData) {
+                $book = new $this->entityClass($bookData);
+                $book->setUserPseudo($bookData['pseudo']);
+                $books[] = $book;
+            }
+        }
+        return $books;
+    }
+
     // Récupère les livres d'un utilisateur par son id d'utilisateur
     public function getBookByUserId(int $user_id)
     {

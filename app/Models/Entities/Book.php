@@ -10,6 +10,7 @@ use App\Models\Entities\AbstractEntity;
 class Book extends AbstractEntity
 {
     private int $user_id;
+    private string $userPseudo;
     private string $titre;
     private string $auteur;
     private string $description;
@@ -33,6 +34,24 @@ class Book extends AbstractEntity
     public function getUserId(): int
     {
         return $this->user_id;
+    }
+
+    /**
+     * Setter pour le pseudo du propriétaire.
+     * @param string $userPseudo;
+     */
+    public function setUserPseudo(string $pseudo): void
+    {
+        $this->userPseudo = $pseudo;
+    }
+
+    /**
+     * Getter pour le pseudo du propriétaire.
+     * @param string $userPseudo;
+     */
+    public function getUserPseudo(): string
+    {
+        return $this->userPseudo;
     }
 
     /**

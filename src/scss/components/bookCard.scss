@@ -1,0 +1,37 @@
+.last-livre {
+    &__container {
+        display: flex;
+        gap: 38px;
+        margin: 80px 0 24px 0;
+    }
+    &__card {
+        width: 200px !important;
+        height: 324px !important;
+        background-color: white !important;
+        &__image {
+            width: 100%;
+        }
+        &__titre {
+            color: black !important;
+            padding-top: 18px;
+            padding-left: 14px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        &__auteur {
+            color: $texte-secondary-color !important;
+            padding-top: 5px;
+            padding-left: 14px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        &__proprietaire {
+            color: $texte-secondary-color !important;
+            padding-top: 22px;
+            padding-left: 14px;
+            font-size: 10px;
+            font-style: italic;
+            font-weight: 400;
+        }
+    }
+}

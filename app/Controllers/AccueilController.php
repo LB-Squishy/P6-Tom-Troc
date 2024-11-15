@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
+use App\Models\Managers\BookManager;
 
 class AccueilController extends AbstractController
 {
@@ -12,18 +13,11 @@ class AccueilController extends AbstractController
      */
     public function showAccueil(): void
     {
-        $user = $_SESSION["user"] ?? null;
         $data = [];
 
-        if ($user) {
-            $data['email'] = $user->getEmail();
-            $data['miniature_profil_url'] = $user->getMiniatureProfilUrl();
-            $data['date_inscription'] = $user->getDateInscription();
-        } else {
-            $data['email'] = 'Non connecté';
-            $data['miniature_profil_url'] = 'Non disponible';
-            $data['date_inscription'] = 'Non disponible';
-        }
+        // Récupère les 4 derniers livres
+        $bookManager = new BookManager();
+        $data['books'] = $bookManager->getLastBook(4);
 
         $this->render("accueil", $data, "Rejoignez nos lecteurs passionés");
         return;
