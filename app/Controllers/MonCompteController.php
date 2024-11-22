@@ -100,9 +100,9 @@ class MonCompteController extends AbstractController
         if (empty($password)) {
             //garde l'ancien mdp
             $password = $user->getPassword();
-        } elseif (strlen($password) < 8) {
-            $errorMessages[] = "Le mot de passe doit contenir au moins 8 caractères.";
-        } elseif (strlen($password) >= 8) {
+        } elseif (strlen($password) < 3) {
+            $errorMessages[] = "Le mot de passe doit contenir au moins 3 caractères.";
+        } elseif (strlen($password) >= 3) {
             //hash le nouveau mdp
             $password = password_hash($password, PASSWORD_BCRYPT);
         }

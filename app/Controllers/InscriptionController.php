@@ -39,8 +39,8 @@ class InscriptionController extends AbstractController
         }
         if (empty($password)) {
             $errorMessages[] = "Un mot de passe est requis.";
-        } elseif (strlen($password) < 8) {
-            $errorMessages[] = "Le mot de passe doit contenir au moins 8 caractères.";
+        } elseif (strlen($password) < 3) {
+            $errorMessages[] = "Le mot de passe doit contenir au moins 3 caractères.";
         }
         if (!empty($errorMessages)) {
             $this->redirectWithMessage('error', implode(' ', $errorMessages), '/inscription');

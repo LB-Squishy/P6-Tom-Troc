@@ -97,40 +97,47 @@ footer {
   background-color: #ffffff !important;
 }
 
-.last-livre__container {
-  display: flex;
-  gap: 38px;
-  margin: 80px 0 24px 0;
-}
-.last-livre__card {
+.livre-card {
   width: 200px !important;
   height: 324px !important;
   background-color: white !important;
 }
-.last-livre__card__image {
+.livre-card__image {
   width: 100%;
+  height: auto;
 }
-.last-livre__card__titre {
+.livre-card__container {
+  padding: 18px 14px 0 14px !important;
+}
+.livre-card__titre {
   color: black !important;
-  padding-top: 18px;
-  padding-left: 14px;
   font-size: 16px;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
-.last-livre__card__auteur {
+.livre-card__auteur {
   color: #a6a6a6 !important;
   padding-top: 5px;
-  padding-left: 14px;
   font-size: 14px;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
-.last-livre__card__proprietaire {
+.livre-card__proprietaire {
   color: #a6a6a6 !important;
   padding-top: 22px;
-  padding-left: 14px;
   font-size: 10px;
   font-style: italic;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .form-container {
@@ -178,6 +185,11 @@ footer {
 .accueil-section__livres {
   padding: 80px 0 64px 0 !important;
   background-color: #faf9f7;
+}
+.accueil-section__livres--card-container {
+  display: flex;
+  gap: 38px;
+  margin: 80px 0 24px 0;
 }
 .accueil-section__fonctionnement {
   padding: 80px 0 0 0 !important;
@@ -235,6 +247,60 @@ footer {
   line-height: 14.52px;
   font-style: italic;
   color: #a6a6a6 !important;
+}
+
+.nosLivres-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 914px;
+  margin: 130px auto 80px auto !important;
+  gap: 70px;
+}
+.nosLivres-section__header {
+  display: flex;
+  justify-content: space-between !important;
+  width: 100%;
+}
+.nosLivres-section__bookList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.champs-recherche {
+  display: flex;
+  width: 322px;
+  height: 50px;
+  border: 1px solid #a6a6a6;
+  border-radius: 10px;
+}
+.champs-recherche__input {
+  color: #a6a6a6;
+  background-color: #ffffff;
+  width: 100%;
+  font-family: "Inter" !important;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+}
+.champs-recherche__input:focus {
+  outline: none;
+}
+.champs-recherche__input::placeholder {
+  color: #a6a6a6;
+  font-family: "Inter" !important;
+  font-size: 14px;
+}
+.champs-recherche__button {
+  padding: 0 12px;
+  font-size: 16px;
+  color: #a6a6a6;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .moncompte-container {

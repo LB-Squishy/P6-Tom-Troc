@@ -35,6 +35,27 @@ class BookManager extends AbstractManager
         return $books;
     }
 
+    // Récupère les x derniers livres par titre
+    public function getBookByTitle(int $nombre_livre, string $titre)
+    {
+        $stmt = $this->db->prepare("SELECT b.*, u.pseudo FROM {$this->table} AS b JOIN users AS u ON b.user_id = u.id WHERE b.titre LIKE :titre ORDER BY date_ajout DESC LIMIT :nombre_livre
+        ");
+        $stmt->bindValue(':titre', '%' . $titre . '%', \PDO::PARAM_STR);
+        $stmt->bindValue(':nombre_livre', $nombre_livre, \PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+
+        $books = [];
+        if ($data && $this->entityClass) {
+            foreach ($data as $bookData) {
+                $book = new $this->entityClass($bookData);
+                $book->setUserPseudo($bookData['pseudo']);
+                $books[] = $book;
+            }
+        }
+        return $books;
+    }
+
     // Récupère les livres d'un utilisateur par son id d'utilisateur
     public function getBookByUserId(int $user_id)
     {

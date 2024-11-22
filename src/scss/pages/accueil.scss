@@ -29,6 +29,11 @@
     &__livres {
         padding: 80px 0 64px 0 !important;
         background-color: $background-body-color;
+        &--card-container {
+            display: flex;
+            gap: 38px;
+            margin: 80px 0 24px 0;
+        }
     }
     &__fonctionnement {
         padding: 80px 0 0 0 !important;

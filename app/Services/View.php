@@ -32,15 +32,20 @@ class View
     {
         // On s'occupe de la vue envoyée
         $viewPath = $this->buildViewPath($viewName);
-        // Inclure le titre dans les paramètres
-        $params['title'] = $this->title;
+        if (file_exists($viewPath)) {
+            // Inclure le titre dans les paramètres
+            $params['title'] = $this->title;
 
-        // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
-        $content = $this->_renderViewFromTemplate($viewPath, $params);
-        $title = $this->title;
-        ob_start();
-        require(LAYOUT_VIEW_PATH);
-        echo ob_get_clean();
+            // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
+            $content = $this->_renderViewFromTemplate($viewPath, $params);
+            $title = $this->title;
+            ob_start();
+            require(LAYOUT_VIEW_PATH);
+            echo ob_get_clean();
+        } else {
+            // Si la vue n'existe pas, afficher une erreur ou rediriger
+            echo "La vue '{$viewName}.php' est introuvable.";
+        }
     }
 
     /**
