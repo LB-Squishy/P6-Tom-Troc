@@ -5,17 +5,15 @@
     width: 914px;
     margin: 130px auto 80px auto !important;
     gap: 70px;
-
     &__header {
         display: flex;
         justify-content: space-between !important;
         width: 100%;
     }
-
     &__bookList {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
+        gap: 38px;
         width: 100%;
     }
 }
