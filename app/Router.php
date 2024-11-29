@@ -25,6 +25,9 @@ class Router
         // On récupère le pseudo demandée par l'utilisateur.
         $pseudo =  AbstractController::request('pseudo', null);
 
+        // On récupère le book_id demandée par l'utilisateur.
+        $book_id =  AbstractController::request('book_id', null);
+
         // On détermine quelle action effectuer en fonction de la valeur $action
         switch ($action) {
             case 'accueil':
@@ -34,7 +37,11 @@ class Router
                 (new NosLivresController())->showNosLivres();
                 break;
             case 'livre':
-                (new LivreController())->showLivre();
+                if ($book_id) {
+                    (new LivreController())->showLivre($book_id);
+                } else {
+                    (new NotFoundController())->showNotFound();
+                }
                 break;
             case 'compte-public':
                 if ($pseudo) {

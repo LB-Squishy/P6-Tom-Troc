@@ -97,6 +97,17 @@ footer {
   background-color: #ffffff !important;
 }
 
+a.link-livre-card {
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+a.link-livre-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
 .livre-card {
   width: 200px !important;
   height: 324px !important;
@@ -301,6 +312,68 @@ footer {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.book-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 85px;
+  width: 100%;
+  height: calc(100vh - 80px - 85px);
+}
+.book-detail__image {
+  overflow: hidden;
+}
+.book-detail__image img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+.book-detail__info {
+  padding: 59px 235px 80px 0;
+}
+.book-detail__auteur {
+  margin-top: 16px !important;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  color: #a6a6a6;
+}
+.book-detail__ligne {
+  width: 27px;
+  border: none;
+  margin: 32.5px 0;
+  border-top: 1px solid #a6a6a6 !important;
+}
+.book-detail__intitule {
+  text-transform: uppercase;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 9.68px;
+}
+.book-detail__description {
+  font-weight: 400;
+  margin: 16px 0 32px 0 !important;
+  height: auto !important;
+}
+.book-detail__proprietaire {
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
+  gap: 15.5px;
+  font-weight: 400;
+}
+.book-detail__proprietaire--image {
+  width: 48px !important;
+  height: 48px !important;
+}
+.book-detail__btnmessage {
+  width: 100% !important;
+  margin: 86px 0 80px 0;
 }
 
 .moncompte-container {

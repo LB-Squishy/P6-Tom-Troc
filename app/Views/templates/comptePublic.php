@@ -22,7 +22,6 @@ require_once './app/Services/Anciennete.php'
                     <p class="comptepublic-section__section-member--anciennete">Membre depuis <?= calculerAnciennete(htmlspecialchars($date_inscription, ENT_QUOTES, 'UTF-8')); ?></p>
                     <p class="comptepublic-section__section-member--biblio">BIBLIOTHEQUE</p>
                     <p class="comptepublic-section__section-member--count"><i class="fa-solid fa-lines-leaning"></i></i></i> <?= count($books); ?> livres</p>
-                    <!-- Bouton pour rediriger vers le compte public -->
                     <a href="/messagerie/?pseudo=<?= urlencode($pseudo) ?>" class="btn btn-secondary comptepublic-section__section-member--btn">Ecrire un message</a>
                 </div>
             </div>

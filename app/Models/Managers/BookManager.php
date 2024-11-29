@@ -9,11 +9,11 @@ class BookManager extends AbstractManager
 {
     protected function setTable(): void
     {
-        $this->table = 'books'; // Définir le nom de la table pour ce modèle
+        $this->table = 'books';
     }
     protected function setEntityClass(): void
     {
-        $this->entityClass = Book::class; // Définir le nom de l'entité pour ce modèle
+        $this->entityClass = Book::class;
     }
 
     // Récupère les x derniers livres
@@ -72,14 +72,20 @@ class BookManager extends AbstractManager
         return $books;
     }
 
-    // Récupère un livre par son id
+    // Récupère un livre par son id avec le pseudo et la photo du propriétaire
     public function getBookById(int $book_id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :book_id");
-        $stmt->execute(['book_id' => $book_id]);
+        $stmt = $this->db->prepare("SELECT b.*, u.pseudo, u.miniature_profil_url FROM {$this->table} AS b JOIN users AS u ON b.user_id = u.id WHERE b.id = :book_id");
+        $stmt->bindValue(':book_id', $book_id, \PDO::PARAM_INT);
+        $stmt->execute();
         $book = $stmt->fetch();
 
-        return $book ? new $this->entityClass($book) : null;
+        if ($book && $this->entityClass) {
+            $bookData = new $this->entityClass($book);
+            $bookData->setUserPseudo($book['pseudo']);
+            $bookData->setMiniatureProfilUrl($book['miniature_profil_url']);
+        }
+        return $bookData;
     }
 
     // Supprime un livre par son id

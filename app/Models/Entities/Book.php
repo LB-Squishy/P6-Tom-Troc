@@ -17,6 +17,8 @@ class Book extends AbstractEntity
     private string $image_url;
     private bool $disponibilite;
     private string $date_ajout;
+    private string $miniature_profil_url;
+    private const DEFAULT_MINIATURE_PROFIL_URL = "miniature-profil-default.png";
 
     /**
      * Setter pour user_id.
@@ -160,5 +162,23 @@ class Book extends AbstractEntity
     public function getDateAjout(): string
     {
         return $this->date_ajout;
+    }
+
+    /**
+     * Setter pour le miniature_profil_url.
+     * @param string $miniature_profil_url
+     */
+    public function setMiniatureProfilUrl(string $miniature_profil_url): void
+    {
+        $this->miniature_profil_url = $miniature_profil_url;
+    }
+
+    /**
+     * Getter pour le miniature_profil_url.
+     * @return string
+     */
+    public function getMiniatureProfilUrl(): string
+    {
+        return $this->miniature_profil_url ?: self::DEFAULT_MINIATURE_PROFIL_URL;
     }
 }
