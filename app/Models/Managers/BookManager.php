@@ -104,4 +104,27 @@ class BookManager extends AbstractManager
             'disponibilite' => $disponibilite
         ]);
     }
+
+    // Met à jour les infos d'un livre
+    public function updateBookById(int $book_id, Book $book)
+    {
+        $stmt = $this->db->prepare("UPDATE {$this->table} SET titre = :titre, auteur = :auteur, description = :description, disponibilite = :disponibilite WHERE id = :book_id");
+        $stmt->execute([
+            'titre' => $book->getTitre(),
+            'auteur' => $book->getAuteur(),
+            'description' => $book->getDescription(),
+            'disponibilite' => $book->getDisponibilite(),
+            'book_id' => $book_id
+        ]);
+    }
+
+    // Met à jour la couverture d'un livre
+    public function updateBookCover(Book $book): bool
+    {
+        $data = [
+            "id" => $book->getId(),
+            "image_url" => $book->getImageUrl(),
+        ];
+        return $this->update($data);
+    }
 }

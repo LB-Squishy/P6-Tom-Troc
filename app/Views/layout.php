@@ -36,6 +36,8 @@
     <script src="/src/js/alerteTimer.js"></script>
     <script src="/src/js/modalePhoto.js"></script>
     <script src="/src/js/modaleConfirmation.js"></script>
+    <script src="/src/js/modaleBookCover.js"></script>
+    <script src="/src/js/modaleEditBook.js"></script>
 
 </body>
 

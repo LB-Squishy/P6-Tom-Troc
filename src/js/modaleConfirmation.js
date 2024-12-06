@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Gérer le clic sur le bouton Annuler
         cancelButton.addEventListener("click", function () {
-            location.reload();
+            const modal = document.getElementById("confirmationModal");
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            modalInstance.hide();
         });
     }
 });

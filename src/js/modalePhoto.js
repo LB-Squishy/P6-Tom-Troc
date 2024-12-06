@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmPhotoButton.addEventListener("click", function () {
             if (photoForm.photo.files.length > 0) {
                 modalFooter.style.display = "none";
-                confirmationMessage.style.display = "none";
                 photoModalLabel.textContent = "Modification en cours...";
 
                 setTimeout(() => {
@@ -28,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Gérer le clic sur le bouton Annuler
         cancelPhotoButton.addEventListener("click", function () {
-            location.reload();
+            const modal = document.getElementById("photoModal");
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            modalInstance.hide();
         });
     }
 });

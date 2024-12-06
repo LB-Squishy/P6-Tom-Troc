@@ -366,6 +366,7 @@ a.link-livre-card:hover {
   margin-top: 22px;
   gap: 15.5px;
   font-weight: 400;
+  cursor: pointer;
 }
 .book-detail__proprietaire--image {
   width: 48px !important;
@@ -374,6 +375,65 @@ a.link-livre-card:hover {
 .book-detail__btnmessage {
   width: 100% !important;
   margin: 86px 0 80px 0;
+}
+
+.editBook-margin-container {
+  margin-top: 40px !important;
+  margin-bottom: 92px !important;
+}
+
+.editBook-container {
+  background-color: #ffffff;
+  margin-top: 23px;
+  padding: 56px 50px 68px 50px;
+  border-radius: 20px;
+}
+
+.editBook-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 118px;
+  width: 100%;
+}
+.editBook-detail__image--texte {
+  margin-bottom: 10px !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.94px;
+  color: #a6a6a6;
+}
+.editBook-detail__image img {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+.editBook-detail__image--modifier {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 23px !important;
+  font-weight: 400;
+  cursor: pointer;
+}
+.editBook-detail__info--margin {
+  margin-bottom: 32px;
+}
+.editBook-detail__info--form-control {
+  background-color: #edf2f6 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 16.94px !important;
+}
+.editBook-detail__info textarea {
+  height: 356px;
+  padding: 16px 14px;
+}
+.editBook-detail__info .form-select {
+  padding: 16px 14px;
+  border: none;
+  cursor: pointer;
+}
+.editBook-detail__btn {
+  width: 90% !important;
+  margin-top: 12px;
 }
 
 .moncompte-container {
@@ -403,6 +463,7 @@ a.link-livre-card:hover {
 }
 .moncompte-container .moncompte-section__section-member--modifier {
   color: #a6a6a6 !important;
+  cursor: pointer;
 }
 .moncompte-container .moncompte-section__section-member--ligne {
   width: 242px;

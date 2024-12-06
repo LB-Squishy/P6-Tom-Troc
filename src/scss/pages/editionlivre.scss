@@ -1,0 +1,62 @@
+.editBook-margin-container {
+    margin-top: 40px !important;
+    margin-bottom: 92px !important;
+}
+
+.editBook-container {
+    background-color: $background-footer-color;
+    margin-top: 23px;
+    padding: 56px 50px 68px 50px;
+    border-radius: 20px;
+}
+
+.editBook-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 118px;
+    width: 100%;
+    &__image {
+        &--texte {
+            margin-bottom: 10px !important;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 19.94px;
+            color: $texte-secondary-color;
+        }
+        img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+        }
+        &--modifier {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 23px !important;
+            font-weight: 400;
+            cursor: pointer;
+        }
+    }
+    &__info {
+        &--margin {
+            margin-bottom: 32px;
+        }
+        &--form-control {
+            background-color: $background-secondary-color !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 16.94px !important;
+        }
+        textarea {
+            height: 356px;
+            padding: 16px 14px;
+        }
+        .form-select {
+            padding: 16px 14px;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    &__btn {
+        width: 90% !important;
+        margin-top: 12px;
+    }
+}

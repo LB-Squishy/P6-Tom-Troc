@@ -33,6 +33,12 @@ class Router
             case 'accueil':
                 (new AccueilController())->showAccueil();
                 break;
+            case 'inscription':
+                (new InscriptionController())->showInscription();
+                break;
+            case 'submit-inscription':
+                (new InscriptionController())->inscription();
+                break;
             case 'nos-livres':
                 (new NosLivresController())->showNosLivres();
                 break;
@@ -56,15 +62,6 @@ class Router
             case 'submit-connexion':
                 (new ConnexionController())->connexion();
                 break;
-            case 'deconnexion':
-                (new ConnexionController())->deconnexion();
-                break;
-            case 'inscription':
-                (new InscriptionController())->showInscription();
-                break;
-            case 'submit-inscription':
-                (new InscriptionController())->inscription();
-                break;
             case 'messagerie':
                 (new MessagerieController())->showMessagerie();
                 break;
@@ -84,7 +81,20 @@ class Router
                 (new MonCompteController())->deleteLivre();
                 break;
             case 'edition-livre':
-                (new EditionLivreController())->showEditionLivre();
+                if ($book_id) {
+                    (new EditionLivreController())->showEditionLivre($book_id);
+                } else {
+                    (new NotFoundController())->showNotFound();
+                }
+                break;
+            case 'edition-livre/edit-book-cover':
+                (new EditionLivreController())->editBookCover();
+                break;
+            case 'edition-livre/edit-book-infos':
+                (new EditionLivreController())->majInfosLivre();
+                break;
+            case 'deconnexion':
+                (new ConnexionController())->deconnexion();
                 break;
             default:
                 (new NotFoundController())->showNotFound();

@@ -118,7 +118,7 @@ require_once './app/Services/Anciennete.php'
                                 <?php endif; ?>
                             </div>
                             <div class="book-card-admin__action">
-                                <a class="book-card-admin__action--editer" href="#">Éditer</a>
+                                <a class="book-card-admin__action--editer" href="/edition-livre?book_id=<?= htmlspecialchars($book->getId(), ENT_QUOTES, 'UTF-8'); ?>">Éditer</a>
                                 <a class="book-card-admin__action--supprimer" href="/mon-compte/suppression-livre?book_id=<?= htmlspecialchars($book->getId(), ENT_QUOTES, 'UTF-8'); ?>">Supprimer</a>
                             </div>
                         </div>
