@@ -106,16 +106,17 @@ class BookManager extends AbstractManager
     }
 
     // Met à jour les infos d'un livre
-    public function updateBookById(int $book_id, Book $book)
+    public function updateBookById(int $book_id, Book $book): bool
     {
         $stmt = $this->db->prepare("UPDATE {$this->table} SET titre = :titre, auteur = :auteur, description = :description, disponibilite = :disponibilite WHERE id = :book_id");
         $stmt->execute([
             'titre' => $book->getTitre(),
             'auteur' => $book->getAuteur(),
             'description' => $book->getDescription(),
-            'disponibilite' => $book->getDisponibilite(),
+            'disponibilite' => (int) $book->getDisponibilite(),
             'book_id' => $book_id
         ]);
+        return $stmt->rowCount() > 0;
     }
 
     // Met à jour la couverture d'un livre

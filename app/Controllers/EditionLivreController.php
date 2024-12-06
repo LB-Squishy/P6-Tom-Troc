@@ -121,7 +121,7 @@ class EditionLivreController extends AbstractController
         $titre = $_POST["titre"] ?? "";
         $auteur = $_POST["auteur"] ?? "";
         $commentaire = $_POST["commentaire"] ?? "";
-        $disponibilite = $_POST["disponibilite"] ?? "";
+        $disponibilite = isset($_POST['disponibilite']) ? (int) $_POST['disponibilite'] : null;
         $errorMessages = [];
         //Vérifie les champs
         if (empty($titre)) {
@@ -133,8 +133,8 @@ class EditionLivreController extends AbstractController
         if (empty($commentaire)) {
             $errorMessages[] = "Un commentaire est requis.";
         }
-        if (empty($disponibilite)) {
-            $errorMessages[] = "Une disponibilite est requise.";
+        if ($disponibilite === null) {
+            $errorMessages[] = "La disponibilité est requise.";
         }
         //Gestion des erreurs du formulaire
         if (!empty($errorMessages)) {
