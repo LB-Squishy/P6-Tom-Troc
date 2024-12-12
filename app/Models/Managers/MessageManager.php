@@ -9,10 +9,10 @@ class ChatManager extends AbstractManager
 {
     protected function setTable(): void
     {
-        $this->table = 'messages'; // Définir le nom de la table pour ce modèle
+        $this->table = 'messages';
     }
     protected function setEntityClass(): void
     {
-        $this->entityClass = Message::class; // Définir le nom de l'entité pour ce modèle
+        $this->entityClass = Message::class;
     }
 }

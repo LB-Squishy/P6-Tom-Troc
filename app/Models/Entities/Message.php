@@ -5,12 +5,12 @@ namespace App\Models\Entities;
 use App\Models\Entities\AbstractEntity;
 
 /**
- * Entité Message : un message est défini par son id, un chat associé, un utilisateur, un contenu, et une date d'envoi.
+ * Entité Message : un message est défini par son id, un chat associé, un expéditeur, un contenu, et une date d'envoi.
  */
 class Message extends AbstractEntity
 {
     private int $chat_id;
-    private int $user_id;
+    private int $sender_id;
     private string $message;
     private string $date_envoi;
 
@@ -33,21 +33,21 @@ class Message extends AbstractEntity
     }
 
     /**
-     * Setter pour user_id.
-     * @param int $user_id
+     * Setter pour sender_id.
+     * @param int $sender_id
      */
-    public function setUserId(int $user_id): void
+    public function setSenderId(int $sender_id): void
     {
-        $this->user_id = $user_id;
+        $this->sender_id = $sender_id;
     }
 
     /**
-     * Getter pour user_id.
+     * Getter pour sender_id.
      * @return int
      */
-    public function getUserId(): int
+    public function getSenderId(): int
     {
-        return $this->user_id;
+        return $this->sender_id;
     }
 
     /**

@@ -9,11 +9,11 @@ class UserManager extends AbstractManager
 {
     protected function setTable(): void
     {
-        $this->table = 'users'; // Définir le nom de la table pour ce modèle
+        $this->table = 'users';
     }
     protected function setEntityClass(): void
     {
-        $this->entityClass = User::class; // Définir le nom de l'entité pour ce modèle
+        $this->entityClass = User::class;
     }
 
     // Inscription d'un nouvel utilisateur

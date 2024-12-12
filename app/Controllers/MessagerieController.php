@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
+use App\Models\Managers\ChatManager;
 
 class MessagerieController extends AbstractController
 {
@@ -12,13 +13,19 @@ class MessagerieController extends AbstractController
      */
     public function showMessagerie(): void
     {
+        //Valider l'utilisateur
+        $user = $this->checkUser();
+        $data = [];
 
-        if (!isset($_SESSION["user"])) {
-            header('Location: error404');
-            exit();
-        }
-
-        $this->render("messagerie", [], "Messagerie");
+        // Récupère les données de l'utilisateur connecté
+        $data = [
+            'id' => $user->getId(),
+        ];
+        // Récupère les chats de l'utilisateur connecté
+        $chatManager = new ChatManager();
+        $data['chats'] = $chatManager->getChatsByUserId($user->getId());
+        // Rend la page avec les données
+        $this->render("messagerie", $data, "Messagerie");
         return;
     }
 }

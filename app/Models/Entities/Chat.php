@@ -5,65 +5,142 @@ namespace App\Models\Entities;
 use App\Models\Entities\AbstractEntity;
 
 /**
- * Entité Chat : un chat est défini par son id, deux utilisateurs associés, et une date de début.
+ * Entité Chat : un chat est défini par son id, deux utilisateurs associés (un propriétaire et un participant), et une date de création.
  */
 class Chat extends AbstractEntity
 {
-    private int $user1_id;
-    private int $user2_id;
-    private string $date_debut;
+    private int $owner_id;
+    private int $participant_id;
+    private string $date_creation;
+    private string $owner_miniature;
+    private string $owner_pseudo;
+    private string $participant_miniature;
+    private string $participant_pseudo;
+    private const DEFAULT_MINIATURE_PROFIL_URL = "miniature-profil-default.png";
 
     /**
-     * Setter pour user1_id.
-     * @param int $user1_id
+     * Setter pour owner_id.
+     * @param int $owner_id
      */
-    public function setUser1Id(int $user1_id): void
+    public function setOwnerId(int $owner_id): void
     {
-        $this->user1_id = $user1_id;
+        $this->owner_id = $owner_id;
     }
 
     /**
-     * Getter pour user1_id.
+     * Getter pour owner_id.
      * @return int
      */
-    public function getUser1Id(): int
+    public function getOwnerId(): int
     {
-        return $this->user1_id;
+        return $this->owner_id;
     }
 
     /**
-     * Setter pour user2_id.
-     * @param int $user2_id
+     * Setter pour participant_id.
+     * @param int $participant_id
      */
-    public function setUser2Id(int $user2_id): void
+    public function setParticipantId(int $participant_id): void
     {
-        $this->user2_id = $user2_id;
+        $this->participant_id = $participant_id;
     }
 
     /**
-     * Getter pour user2_id.
+     * Getter pour participant_id.
      * @return int
      */
-    public function getUser2Id(): int
+    public function getPaticipantId(): int
     {
-        return $this->user2_id;
+        return $this->participant_id;
     }
 
     /**
-     * Setter pour date_debut.
-     * @param string $date_debut
+     * Setter pour date_creation.
+     * @param string $date_creation
      */
-    public function setDateDebut(string $date_debut): void
+    public function setDateCreation(string $date_creation): void
     {
-        $this->date_debut = $date_debut;
+        $this->date_creation = $date_creation;
     }
 
     /**
-     * Getter pour date_debut.
+     * Getter pour date_creation.
      * @return string
      */
-    public function getDateDebut(): string
+    public function getDateCreation(): string
     {
-        return $this->date_debut;
+        return $this->date_creation;
+    }
+
+    /**
+     * Setter pour owner_miniature.
+     * @param string $owner_miniature
+     */
+    public function setOwnerMiniature(string $owner_miniature): void
+    {
+        $this->owner_miniature = $owner_miniature;
+    }
+
+    /**
+     * Getter pour owner_miniature.
+     * @return string
+     */
+    public function getOwnerMiniature(): string
+    {
+        return $this->owner_miniature ?: self::DEFAULT_MINIATURE_PROFIL_URL;
+    }
+
+    /**
+     * Setter pour le owner_pseudo.
+     * @param string $owner_pseudo
+     */
+    public function setOwnerPseudo(string $owner_pseudo): void
+    {
+        $this->owner_pseudo = $owner_pseudo;
+    }
+
+    /**
+     * Getter pour le owner_pseudo.
+     * @return string
+     */
+    public function getOwnerPseudo(): string
+    {
+        return $this->owner_pseudo;
+    }
+
+    /**
+     * Setter pour participant_miniature.
+     * @param string $participant_miniature
+     */
+    public function setParticipantMiniature(string $participant_miniature): void
+    {
+        $this->participant_miniature = $participant_miniature;
+    }
+
+    /**
+     * Getter pour participant_miniature.
+     * @return string
+     */
+    public function getParticipantMiniature(): string
+    {
+        return $this->participant_miniature ?: self::DEFAULT_MINIATURE_PROFIL_URL;
+    }
+
+    /**
+     * Setter pour le participant_pseudo.
+     * @param string $participant_pseudo
+     */
+    public function setParticipantPseudo(string $participant_pseudo): void
+    {
+        $this->participant_pseudo = $participant_pseudo;
+    }
+
+    /**
+     * Getter pour le participant_pseudo.
+     * @return string
+     */
+    public function getParticipantPseudo(): string
+    {
+        return $this->participant_pseudo;
     }
 }

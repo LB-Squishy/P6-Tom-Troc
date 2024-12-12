@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\AbstractController;
 use App\Models\Managers\BookManager;
-use App\Models\Managers\UserManager;
 use App\Services\Utils;
 
 class EditionLivreController extends AbstractController
