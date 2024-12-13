@@ -13,6 +13,8 @@ class Message extends AbstractEntity
     private int $sender_id;
     private string $message;
     private string $date_envoi;
+    private string $sender_miniature;
+    private const DEFAULT_MINIATURE_PROFIL_URL = "miniature-profil-default.png";
 
     /**
      * Setter pour chat_id.
@@ -84,5 +86,23 @@ class Message extends AbstractEntity
     public function getDateEnvoi(): string
     {
         return $this->date_envoi;
+    }
+
+    /**
+     * Setter pour sender_miniature.
+     * @param string $sender_miniature
+     */
+    public function setSenderMiniature(string $sender_miniature): void
+    {
+        $this->sender_miniature = $sender_miniature;
+    }
+
+    /**
+     * Getter pour sender_miniature.
+     * @return string
+     */
+    public function getSenderMiniature(): string
+    {
+        return $this->sender_miniature ?: self::DEFAULT_MINIATURE_PROFIL_URL;
     }
 }

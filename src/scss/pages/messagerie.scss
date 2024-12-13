@@ -1,0 +1,52 @@
+.messagerie-container {
+    display: flex !important;
+    padding: 0 150px !important;
+    background-color: $background-header-color !important;
+    .chat-section {
+        display: flex;
+        flex-direction: column;
+        background-color: $background-body-color;
+        width: 308px;
+        &__title {
+            padding: 55px 0 27px 34px;
+        }
+        &__card {
+            display: flex;
+            gap: 12px;
+            height: 84px;
+            padding: 18px 34px;
+            &:hover {
+                background-color: white;
+            }
+            &:focus {
+                background-color: white;
+            }
+            &--miniature {
+                display: block;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }
+    .message-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 35px 0 98px 50px !important;
+        &__header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            &--miniature {
+                display: block;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }
+}

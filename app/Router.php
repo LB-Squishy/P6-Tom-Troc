@@ -23,10 +23,13 @@ class Router
         $action = rtrim(AbstractController::request('action', 'accueil'), '/');
 
         // On récupère le pseudo demandée par l'utilisateur.
-        $pseudo =  AbstractController::request('pseudo', null);
+        $pseudo = AbstractController::request('pseudo', null);
 
         // On récupère le book_id demandée par l'utilisateur.
-        $book_id =  AbstractController::request('book_id', null);
+        $book_id = AbstractController::request('book_id', null);
+
+        // On récupère le chat_id demandée par l'utilisateur.
+        $chat_id = AbstractController::request('chat_id', null);
 
         // On détermine quelle action effectuer en fonction de la valeur $action
         switch ($action) {
@@ -62,9 +65,6 @@ class Router
             case 'submit-connexion':
                 (new ConnexionController())->connexion();
                 break;
-            case 'messagerie':
-                (new MessagerieController())->showMessagerie();
-                break;
             case 'mon-compte':
                 (new MonCompteController())->showMonCompte();
                 break;
@@ -92,6 +92,13 @@ class Router
                 break;
             case 'edition-livre/edit-book-infos':
                 (new EditionLivreController())->majInfosLivre();
+                break;
+            case 'messagerie':
+                if ($chat_id) {
+                    (new MessagerieController())->showMessagerie($chat_id);
+                } else {
+                    (new MessagerieController())->showMessagerie();
+                }
                 break;
             case 'deconnexion':
                 (new ConnexionController())->deconnexion();

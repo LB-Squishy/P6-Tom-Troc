@@ -777,4 +777,57 @@ a.link-livre-card:hover {
   }
 }
 
+.messagerie-container {
+  display: flex !important;
+  padding: 0 150px !important;
+  background-color: #f5f3ef !important;
+}
+.messagerie-container .chat-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #faf9f7;
+  width: 308px;
+}
+.messagerie-container .chat-section__title {
+  padding: 55px 0 27px 34px;
+}
+.messagerie-container .chat-section__card {
+  display: flex;
+  gap: 12px;
+  height: 84px;
+  padding: 18px 34px;
+}
+.messagerie-container .chat-section__card:hover {
+  background-color: white;
+}
+.messagerie-container .chat-section__card:focus {
+  background-color: white;
+}
+.messagerie-container .chat-section__card--miniature {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.messagerie-container .message-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 35px 0 98px 50px !important;
+}
+.messagerie-container .message-section__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.messagerie-container .message-section__header--miniature {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /*# sourceMappingURL=style.css.map */
