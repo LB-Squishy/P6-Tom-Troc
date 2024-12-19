@@ -16,6 +16,7 @@ class Chat extends AbstractEntity
     private string $owner_pseudo;
     private string $participant_miniature;
     private string $participant_pseudo;
+    private string $last_message;
     private const DEFAULT_MINIATURE_PROFIL_URL = "miniature-profil-default.png";
 
     /**
@@ -142,5 +143,23 @@ class Chat extends AbstractEntity
     public function getParticipantPseudo(): string
     {
         return $this->participant_pseudo;
+    }
+
+    /**
+     * Setter pour le last_message.
+     * @param string $last_message
+     */
+    public function setLastMessage(string $last_message): void
+    {
+        $this->last_message = $last_message;
+    }
+
+    /**
+     * Getter pour le last_message.
+     * @return string
+     */
+    public function getLastMessage(): string
+    {
+        return $this->last_message;
     }
 }

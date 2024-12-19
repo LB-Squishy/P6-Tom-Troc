@@ -47,4 +47,22 @@ class MessageManager extends AbstractManager
         }
         return [];
     }
+
+    // Récupère le dernier message d'un chat par son ID
+    public function getLastMessageByChatId(int $chat_id): string
+    {
+        $stmt = $this->db->prepare("
+                SELECT message
+                FROM {$this->table}
+                WHERE chat_id = :chat_id
+                ORDER BY date_envoi DESC
+                LIMIT 1
+                ");
+        $stmt->execute(['chat_id' => $chat_id]);
+        $last_message = $stmt->fetch();
+        if ($last_message === false) {
+            return "";
+        }
+        return $last_message['message'];
+    }
 }
