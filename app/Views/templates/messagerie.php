@@ -29,18 +29,18 @@
     <section class="message-section">
         <?php if (!empty($messages)): ?>
             <div class="message-section__header">
-                <img class="message-section__header--miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($chat->getParticipantMiniature(), ENT_QUOTES, 'UTF-8') ?>" alt="Miniature" />
-                <p class="message-section__header--pseudo"><?= htmlspecialchars($chat->getParticipantPseudo(), ENT_QUOTES, 'UTF-8') ?></p>
+                <img class="message-section__header--miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($currentParticipant['miniatureParticipant'], ENT_QUOTES, 'UTF-8') ?>" alt="Miniature" />
+                <p class="message-section__header--pseudo"><?= htmlspecialchars($currentParticipant['pseudoParticipant'], ENT_QUOTES, 'UTF-8') ?></p>
             </div>
             <div class="message-section__chat-box">
                 <div class="message-section__chat-box--message-container">
-                    <?php foreach ($messages as $index => $message): ?>
-                        <div class="<?= ($index % 2 == 0) ? 'message-section__chat-box--container-right' : 'message-section__chat-box--container-left' ?>">
+                    <?php foreach ($messages as $message): ?>
+                        <div class="<?= (htmlspecialchars($currentParticipant['miniatureParticipant'], ENT_QUOTES, 'UTF-8') === htmlspecialchars($message->getSenderMiniature(), ENT_QUOTES, 'UTF-8')) ? 'message-section__chat-box--container-left' : 'message-section__chat-box--container-right' ?>">
                             <div class="message-section__chat-box--header-container">
                                 <img class="message-section__chat-box--miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($message->getSenderMiniature(), ENT_QUOTES, 'UTF-8') ?>" alt="Miniature" />
                                 <p class="message-section__chat-box--date"><?= htmlspecialchars((new DateTime($message->getDateEnvoi()))->format('d.m H:i'), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
-                            <div class="<?= ($index % 2 == 0) ? 'message-section__chat-box--message-right' : 'message-section__chat-box--message-left' ?>">
+                            <div class="<?= (htmlspecialchars($currentParticipant['miniatureParticipant'], ENT_QUOTES, 'UTF-8') === htmlspecialchars($message->getSenderMiniature(), ENT_QUOTES, 'UTF-8')) ? 'message-section__chat-box--message-left' : 'message-section__chat-box--message-right' ?>">
                                 <p><?= htmlspecialchars($message->getMessage(), ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                         </div>
@@ -48,9 +48,9 @@
                 </div>
             </div>
             <div class="message-section__new-message">
-                <form class="message-section__new-message--form">
-                    <textarea class="message-section__new-message--texte form-control" name="new-message" id=""></textarea>
-                    <button class="btn btn-primary message-section__new-message--btn">Envoyer</button>
+                <form method="POST" action="/messagerie/send-message?chat_id=<?php echo $currentChat; ?>" class="message-section__new-message--form">
+                    <textarea class="message-section__new-message--texte form-control" name="new-message" required></textarea>
+                    <button type="submit" class="btn btn-primary message-section__new-message--btn">Envoyer</button>
                 </form>
             </div>
         <?php else: ?>

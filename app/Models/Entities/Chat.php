@@ -50,7 +50,7 @@ class Chat extends AbstractEntity
      * Getter pour participant_id.
      * @return int
      */
-    public function getPaticipantId(): int
+    public function getParticipantId(): int
     {
         return $this->participant_id;
     }

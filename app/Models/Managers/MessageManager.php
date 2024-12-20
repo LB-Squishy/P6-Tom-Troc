@@ -21,6 +21,7 @@ class MessageManager extends AbstractManager
     {
         $stmt = $this->db->prepare("
             SELECT 
+                m.chat_id,
                 m.sender_id,
                 m.message,
                 m.date_envoi,
@@ -37,6 +38,7 @@ class MessageManager extends AbstractManager
         if ($data && $this->entityClass) {
             foreach ($data as $messageData) {
                 $message = new $this->entityClass($messageData);
+                $message->setChatId($messageData['chat_id']);
                 $message->setSenderId($messageData['sender_id']);
                 $message->setMessage($messageData['message']);
                 $message->setDateEnvoi($messageData['date_envoi']);
@@ -64,5 +66,16 @@ class MessageManager extends AbstractManager
             return "";
         }
         return $last_message['message'];
+    }
+
+    // Envoi d'un nouveau message
+    public function newMessage(Message $message): bool
+    {
+        $data = [
+            "chat_id" => $message->getChatId(),
+            "sender_id" => $message->getSenderId(),
+            "message" => $message->getMessage(),
+        ];
+        return $this->create($data);
     }
 }

@@ -957,8 +957,9 @@ a.link-livre-card:hover {
   display: flex;
   gap: 21px;
 }
-.messagerie-container .message-section__new-message--texte {
+.messagerie-container .message-section__new-message textarea {
   height: 49px;
+  resize: none;
 }
 .messagerie-container .message-section__new-message--btn {
   max-height: 49px;

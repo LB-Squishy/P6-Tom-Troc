@@ -178,8 +178,9 @@
                 display: flex;
                 gap: 21px;
             }
-            &--texte {
+            textarea {
                 height: 49px;
+                resize: none;
             }
             &--btn {
                 max-height: 49px;

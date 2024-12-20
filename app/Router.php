@@ -100,6 +100,13 @@ class Router
                     (new MessagerieController())->showMessagerie();
                 }
                 break;
+            case 'messagerie/send-message':
+                if ($chat_id) {
+                    (new MessagerieController())->sendMessage($chat_id);
+                } else {
+                    (new MessagerieController())->sendMessage();
+                }
+                break;
             case 'deconnexion':
                 (new ConnexionController())->deconnexion();
                 break;
