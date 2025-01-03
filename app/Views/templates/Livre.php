@@ -21,6 +21,6 @@
             <img class=" book-detail__proprietaire--image profil-miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($book->getMiniatureProfilUrl(), ENT_QUOTES, 'UTF-8'); ?>" alt="Photo de profil" />
             <p class="book-detail__proprietaire--nom"><?= htmlspecialchars($book->getUserPseudo(), ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
-        <a href="/messagerie/?pseudo=<?= ($book->getUserPseudo()) ?>" class="btn btn-primary book-detail__btnmessage">Envoyer un message</a>
+        <a href="/messagerie/?pseudo=<?= urlencode($book->getUserPseudo()) ?>" class="btn btn-primary book-detail__btnmessage">Envoyer un message</a>
     </div>
 </div>

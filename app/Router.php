@@ -96,6 +96,8 @@ class Router
             case 'messagerie':
                 if ($chat_id) {
                     (new MessagerieController())->showMessagerie($chat_id);
+                } elseif ($pseudo) {
+                    (new MessagerieController())->showMessagerie(null, $pseudo);
                 } else {
                     (new MessagerieController())->showMessagerie();
                 }

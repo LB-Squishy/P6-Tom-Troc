@@ -49,4 +49,33 @@ class ChatManager extends AbstractManager
         }
         return [];
     }
+
+    // Récupère l'ID du participant à partir du pseudo
+    public function getParticipantIdByPseudo(string $pseudo): int
+    {
+        $stmt = $this->db->prepare("
+        SELECT id
+        FROM users
+        WHERE pseudo = :pseudo
+        ");
+        $stmt->execute(['pseudo' => $pseudo]);
+        $data = $stmt->fetch();
+        return $data['id'];
+    }
+
+    // Récupère l'ID du chat à partir des ID des participants
+    public function getChatIdByParticipantsId(int $owner_id, int $participant_id): int
+    {
+        $stmt = $this->db->prepare("
+        SELECT id
+        FROM {$this->table}
+        WHERE owner_id = :owner_id AND participant_id = :participant_id
+        ");
+        $stmt->execute(['owner_id' => $owner_id, 'participant_id' => $participant_id]);
+        $data = $stmt->fetch();
+        if (!$data) {
+            return 0;
+        }
+        return $data['id'];
+    }
 }

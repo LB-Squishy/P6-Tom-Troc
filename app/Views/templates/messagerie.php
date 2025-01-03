@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template pour afficher la page d'accueil'.
+ * Template pour afficher la page de messagerie.
  */
 ?>
 <div class="messagerie-container">
