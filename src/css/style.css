@@ -8,6 +8,13 @@ body {
   font-weight: 300 !important;
 }
 
+.alert {
+  width: 100% !important;
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  z-index: 1050 !important;
+}
+
 .margin-container {
   margin-top: 90px !important;
   margin-bottom: 100px !important;
@@ -796,6 +803,11 @@ a.link-livre-card:hover {
 .messagerie-container .chat-section__title {
   padding: 55px 0 27px 34px;
 }
+.messagerie-container .chat-section__card-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .messagerie-container .chat-section__card {
   display: flex;
   gap: 12px;
@@ -811,6 +823,7 @@ a.link-livre-card:hover {
   background-color: white;
 }
 .messagerie-container .chat-section__card--container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -843,8 +856,14 @@ a.link-livre-card:hover {
   color: #292929;
 }
 .messagerie-container .chat-section__card--message-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 30px;
   width: 100%;
   overflow: hidden;
+  padding-right: 7px;
 }
 .messagerie-container .chat-section__card--message {
   width: 100%;
@@ -855,6 +874,28 @@ a.link-livre-card:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.messagerie-container .chat-section__card--delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+.messagerie-container .chat-section__card-container:hover .chat-section__card--delete {
+  width: 10%;
+}
+.messagerie-container .chat-section .chat-section__card--delete i {
+  font-size: 1.5em;
+  color: #00ab67;
 }
 .messagerie-container .message-section {
   display: flex;

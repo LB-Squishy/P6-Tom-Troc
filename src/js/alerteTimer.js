@@ -6,6 +6,11 @@ window.addEventListener("DOMContentLoaded", () => {
     if (successMessage) {
         setTimeout(() => {
             successMessage.classList.remove("show");
+
+            // Écouter la fin de la transition pour supprimer l'élément du DOM
+            successMessage.addEventListener("transitionend", () => {
+                successMessage.remove();
+            });
         }, 1500);
     }
 });

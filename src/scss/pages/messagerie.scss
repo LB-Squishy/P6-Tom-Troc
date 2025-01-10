@@ -15,6 +15,11 @@
         &__title {
             padding: 55px 0 27px 34px;
         }
+        &__card-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
         &__card {
             display: flex;
             gap: 12px;
@@ -29,6 +34,7 @@
                 background-color: white;
             }
             &--container {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 width: 100%;
@@ -61,8 +67,14 @@
                 color: $texte-primary-color;
             }
             &--message-container {
+                display: flex;
+                flex-direction: row;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 30px;
                 width: 100%;
                 overflow: hidden;
+                padding-right: 7px;
             }
             &--message {
                 width: 100%;
@@ -74,6 +86,28 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+            &--delete {
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 0;
+                overflow: hidden;
+                background-color: $background-footer-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: width 0.3s ease;
+                color: white;
+                text-decoration: none;
+            }
+        }
+        &__card-container:hover .chat-section__card--delete {
+            width: 10%;
+        }
+        .chat-section__card--delete i {
+            font-size: 1.5em;
+            color: $primary-color;
         }
     }
     .message-section {

@@ -9,25 +9,30 @@
         <h1 class="chat-section__title"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
         <?php if (!empty($chats)): ?>
             <?php foreach ($chats as $chat): ?>
-                <a class="chat-section__card <?= (isset($currentChat) && $currentChat == urlencode($chat->getId()) ? 'chat-section__card--active' : '') ?>" href="/messagerie/?chat_id=<?= urlencode($chat->getId()) ?>">
-                    <img class="chat-section__card--miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($chat->getParticipantMiniature(), ENT_QUOTES, 'UTF-8') ?>" alt="Miniature" />
-                    <div class="chat-section__card--container">
-                        <div class="chat-section__card--texte-container">
-                            <p class="chat-section__card--pseudo"><?= htmlspecialchars($chat->getParticipantPseudo(), ENT_QUOTES, 'UTF-8') ?></p>
-                            <p class="chat-section__card--heure"><?= htmlspecialchars((new DateTime($chat->getDateCreation()))->format('H:i'), ENT_QUOTES, 'UTF-8') ?></p>
+                <div class="chat-section__card-container">
+                    <a class="chat-section__card <?= (isset($currentChat) && $currentChat == urlencode($chat->getId()) ? 'chat-section__card--active' : '') ?>" href="/messagerie/?chat_id=<?= urlencode($chat->getId()) ?>">
+                        <img class="chat-section__card--miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($chat->getParticipantMiniature(), ENT_QUOTES, 'UTF-8') ?>" alt="Miniature" />
+                        <div class="chat-section__card--container">
+                            <div class="chat-section__card--texte-container">
+                                <p class="chat-section__card--pseudo"><?= htmlspecialchars($chat->getParticipantPseudo(), ENT_QUOTES, 'UTF-8') ?></p>
+                                <p class="chat-section__card--heure"><?= htmlspecialchars((new DateTime($chat->getDateCreation()))->format('H:i'), ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
+                            <div class="chat-section__card--message-container">
+                                <p class="chat-section__card--message"><?= htmlspecialchars($chat->getLastMessage(), ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
                         </div>
-                        <div class="chat-section__card--message-container">
-                            <p class="chat-section__card--message"><?= htmlspecialchars($chat->getLastMessage(), ENT_QUOTES, 'UTF-8') ?></p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                    <a href="/messagerie/delete-chat?chat_id=<?= urlencode($chat->getId()) ?>" class="chat-section__card--delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce chat ?');">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
             <?php endforeach; ?>
         <?php else: ?>
             <p>Vous n'avez pas de conversation en cours.</p>
         <?php endif; ?>
     </section>
     <section class="message-section">
-        <?php if (!empty($messages)): ?>
+        <?php if (!empty($currentParticipant)): ?>
             <div class="message-section__header">
                 <img class="message-section__header--miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($currentParticipant['miniatureParticipant'], ENT_QUOTES, 'UTF-8') ?>" alt="Miniature" />
                 <p class="message-section__header--pseudo"><?= htmlspecialchars($currentParticipant['pseudoParticipant'], ENT_QUOTES, 'UTF-8') ?></p>

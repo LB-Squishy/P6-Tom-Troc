@@ -96,11 +96,15 @@ class Router
             case 'messagerie':
                 if ($chat_id) {
                     (new MessagerieController())->showMessagerie($chat_id);
-                } elseif ($pseudo) {
-                    (new MessagerieController())->showMessagerie(null, $pseudo);
                 } else {
                     (new MessagerieController())->showMessagerie();
                 }
+                break;
+            case 'messagerie/create-chat':
+                (new MessagerieController())->createChat();
+                break;
+            case 'messagerie/delete-chat':
+                (new MessagerieController())->deleteChat();
                 break;
             case 'messagerie/send-message':
                 if ($chat_id) {
