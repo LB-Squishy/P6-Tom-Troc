@@ -12,7 +12,6 @@ class Chat extends AbstractEntity
     private int $owner_id;
     private string $owner_miniature;
     private string $owner_pseudo;
-    private int $owner_non_lu;
     private int $participant_id;
     private string $participant_miniature;
     private string $participant_pseudo;
@@ -73,24 +72,6 @@ class Chat extends AbstractEntity
     public function getOwnerPseudo(): string
     {
         return $this->owner_pseudo;
-    }
-
-    /**
-     * Setter pour owner_non_lu.
-     * @param int $owner_non_lu
-     */
-    public function setOwnerNonLu(int $owner_non_lu): void
-    {
-        $this->owner_non_lu = $owner_non_lu;
-    }
-
-    /**
-     * Getter pour owner_non_lu.
-     * @return int
-     */
-    public function getOwnerNonLu(): int
-    {
-        return $this->owner_non_lu;
     }
 
     /**
