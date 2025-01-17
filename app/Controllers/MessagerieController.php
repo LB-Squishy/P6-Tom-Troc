@@ -3,11 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\AbstractController;
-use App\Models\Managers\BookManager;
 use App\Models\Managers\ChatManager;
 use App\Models\Managers\MessageManager;
 use App\Models\Entities\Message;
-use App\Models\Entities\Chat;
 
 class MessagerieController extends AbstractController
 {
@@ -46,10 +44,12 @@ class MessagerieController extends AbstractController
                     break;
                 }
             }
+            $chatManager->resetUnreadCount($chat_id, $data['id']);
         }
         // var_dump($data);
 
         // Rend la page avec les données
+
         $this->render("messagerie", $data, "Messagerie");
         return;
     }
@@ -109,10 +109,6 @@ class MessagerieController extends AbstractController
         if (!$chat_id) {
             $this->redirectWithMessage('error', 'Chat introuvable.', '/messagerie');
         }
-        //Vérifie que l'utilisateur est bien le propriétaire du chat
-        if ($chat->getOwnerId() !== $user->getId()) {
-            $this->redirectWithMessage('error', 'Action non autorisée. Vous n\'êtes pas le propriétaire de ce livre. Echec de suppression', '/messagerie');
-        }
         //Supprime le chat
         $chatManager->deleteChatById($chat_id);
         $this->redirectWithMessage('success', 'Le chat a bien été supprimé.', '/messagerie');
@@ -130,20 +126,32 @@ class MessagerieController extends AbstractController
         $data = ['id' => $user->getId()];
         // Initialise les managers
         $messageManager = new MessageManager();
+        $chatManager = new ChatManager();
         //Récupère les données du formulaire
         $messageContent = $_POST["new-message"] ?? "";
         $chat_id = intval($_GET["chat_id"]) ?? "";
-
-        //Création l'entité Message
-        $message = new Message();
-        $message->setChatId($chat_id);
-        $message->setSenderId($data['id']);
-        $message->setMessage($messageContent);
+        // Récupère l'ID du participant
+        $chat = $chatManager->getChatById($chat_id);
+        $participant_id = $chat->getParticipantId();
+        // Récupère les deux chats distincts pour l'owner et le participant
+        $chatOwner = $chatManager->getChatId($data['id'], $participant_id);
+        $chatParticipant = $chatManager->getChatId($participant_id, $data['id']);
+        //Création l'entité Message pour l'Owner
+        $messageOwner = new Message();
+        $messageOwner->setChatId($chatOwner);
+        $messageOwner->setSenderId($data['id']);
+        $messageOwner->setMessage($messageContent);
+        //Création l'entité Message pour le participant
+        $messageParticipant = new Message();
+        $messageParticipant->setChatId($chatParticipant);
+        $messageParticipant->setSenderId($participant_id);
+        $messageParticipant->setMessage($messageContent);
         //Enregistre un nouveau Message en BDD
-        if (!$messageManager->newMessage($message)) {
-            $this->redirectWithMessage('error', 'Echec de l\'envoi.', '/messagerie?chat_id=' . $chat_id);
-        }
+        $messageManager->newMessage($messageOwner);
+        $messageManager->newMessage($messageParticipant);
+        //Incrementer le compteur de message non lu du participant
+        $chatManager->incrementUnreadCount($chatParticipant, $participant_id);
         //Rediriger avec success vers la page de messagerie
-        $this->redirectWithMessage('success', 'Message envoyé ! ', '/messagerie?chat_id=' . $chat_id);
+        $this->redirectWithMessage('success', 'Message envoyé ! ' . $chatParticipant . ' ' . $participant_id, '/messagerie?chat_id=' . $chat_id);
     }
 }

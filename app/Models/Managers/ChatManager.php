@@ -29,7 +29,7 @@ class ChatManager extends AbstractManager
         FROM {$this->table} c
         LEFT JOIN users u1 ON u1.id = c.owner_id
         LEFT JOIN users u2 ON u2.id = c.participant_id
-        WHERE c.owner_id = :user_id OR c.participant_id = :user_id 
+        WHERE c.owner_id = :user_id
         ORDER BY date_creation DESC
         ");
         $stmt->execute(['user_id' => $user_id]);
@@ -39,17 +39,10 @@ class ChatManager extends AbstractManager
         if ($data && $this->entityClass) {
             foreach ($data as $chatData) {
                 $chat = new $this->entityClass($chatData);
-                if ($chatData['participant_id'] === $user_id) {
-                    $chat->setOwnerMiniature($chatData['participant_miniature']);
-                    $chat->setOwnerPseudo($chatData['participant_pseudo']);
-                    $chat->setParticipantMiniature($chatData['owner_miniature']);
-                    $chat->setParticipantPseudo($chatData['owner_pseudo']);
-                } else {
-                    $chat->setOwnerMiniature($chatData['owner_miniature']);
-                    $chat->setOwnerPseudo($chatData['owner_pseudo']);
-                    $chat->setParticipantMiniature($chatData['participant_miniature']);
-                    $chat->setParticipantPseudo($chatData['participant_pseudo']);
-                }
+                $chat->setOwnerMiniature($chatData['owner_miniature']);
+                $chat->setOwnerPseudo($chatData['owner_pseudo']);
+                $chat->setParticipantMiniature($chatData['participant_miniature']);
+                $chat->setParticipantPseudo($chatData['participant_pseudo']);
                 $chats[] = $chat;
             }
             return $chats;
@@ -63,7 +56,7 @@ class ChatManager extends AbstractManager
         $stmt = $this->db->prepare("
         SELECT id
         FROM {$this->table}
-        WHERE (owner_id = :owner_id AND participant_id = :participant_id) OR (owner_id = :participant_id AND participant_id = :owner_id)
+        WHERE owner_id = :owner_id AND participant_id = :participant_id
         ");
         $stmt->execute(['owner_id' => $owner_id, 'participant_id' => $participant_id]);
         $data = $stmt->fetch();
@@ -73,13 +66,21 @@ class ChatManager extends AbstractManager
     //Crée un nouveau chat
     public function newChat(int $owner_id, int $participant_id): ?int
     {
-        $data = [
+        $dataOwner = [
             "owner_id" => $owner_id,
             "participant_id" => $participant_id,
         ];
 
-        if ($this->create($data)) {
-            return (int)$this->db->lastInsertId();
+        $dataParticipant = [
+            "owner_id" => $participant_id,
+            "participant_id" => $owner_id,
+        ];
+
+        if ($this->create($dataOwner)) {
+            $ownerChatId = (int)$this->db->lastInsertId();
+            if ($this->create($dataParticipant)) {
+                return $ownerChatId;
+            }
         }
 
         return null;
@@ -125,16 +126,35 @@ class ChatManager extends AbstractManager
     public function getTotalUnreadCount(int $user_id): int
     {
         $stmt = $this->db->prepare("
-        SELECT SUM(CASE 
-                WHEN owner_id = :user_id THEN owner_non_lu
-                WHEN participant_id = :user_id THEN participant_non_lu
-                ELSE 0
-            END) AS total_non_lu 
-        FROM {$this->table} 
-        WHERE owner_id = :user_id OR participant_id = :user_id
+            SELECT SUM(participant_non_lu) AS total_non_lu
+            FROM {$this->table} 
+            WHERE owner_id = :user_id
         ");
         $stmt->execute(['user_id' => $user_id]);
         $data = $stmt->fetch();
         return $data ? (int)$data['total_non_lu'] : 0;
+    }
+
+    // Incrémente le comptage de message non lu
+    public function incrementUnreadCount(int $chat_id, int $participant_id): void
+    {
+        $stmt = $this->db->prepare("
+        UPDATE {$this->table}
+        SET participant_non_lu = participant_non_lu + 1
+        WHERE id = :chat_id
+            AND owner_id = :participant_id
+        ");
+        $stmt->execute(['chat_id' => $chat_id, 'participant_id' => $participant_id]);
+    }
+
+    // Réinitialise le comptage des messages non lus pour le participant
+    public function resetUnreadCount(int $chat_id, int $user_id): void
+    {
+        $stmt = $this->db->prepare("
+        UPDATE {$this->table}
+        SET participant_non_lu = 0
+        WHERE id = :chat_id AND owner_id = :owner_id
+    ");
+        $stmt->execute(['chat_id' => $chat_id, 'owner_id' => $user_id]);
     }
 }
