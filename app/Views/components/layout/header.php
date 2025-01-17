@@ -4,6 +4,8 @@
  * Template pour afficher le header'.
  */
 
+use App\Models\Managers\ChatManager;
+
 // Vérifiez si l'utilisateur est connecté
 $isLog = isset($_SESSION["user"]);
 
@@ -25,8 +27,17 @@ $currentPage = basename($_SERVER["REQUEST_URI"], ".php")
                     <a class="nav-link <?= ($currentPage == "accueil") ? "active" : "" ?>" href="/accueil">Accueil</a>
                     <a class="nav-link <?= ($currentPage == "nos-livres") ? "active" : "" ?>" href="/nos-livres">Nos livres à l'échange</a>
                     <?php if ($isLog) : ?>
-                        <a class="nav-link <?= ($currentPage == "messagerie") ? "active" : "" ?>" href="/messagerie">Messagerie</a>
-                        <a class="nav-link <?= ($currentPage == "mon-compte") ? "active" : "" ?>" href="/mon-compte">Mon compte</a>
+                        <a class="nav-link d-flex gap-1 <?= ($currentPage == "messagerie") ? "active" : "" ?>" href="/messagerie">
+                            <p>Messagerie</p>
+                            <p class="bg-dark text-white rounded-pill px-1 py-1 fs-12" style="font-size: 8.25px" ;>
+                                <?php
+                                $total_non_lu = (new ChatManager())->getTotalUnreadCount($_SESSION['user']->getId());
+                                echo $total_non_lu
+                                ?>
+                            </p>
+                        </a>
+                        <a class=" nav-link <?= ($currentPage == "mon-compte") ? "active" : "" ?>" href="/mon-compte">Mon compte
+                        </a>
                         <a class="nav-link <?= ($currentPage == "deconnexion") ? "active" : "" ?>" href="/deconnexion">Déconnexion</a>
                     <?php else : ?>
                         <a class="nav-link <?= ($currentPage == "connexion") ? "active" : "" ?>" href="/connexion">Connexion</a>

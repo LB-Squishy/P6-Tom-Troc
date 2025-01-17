@@ -10,12 +10,14 @@ use App\Models\Entities\AbstractEntity;
 class Chat extends AbstractEntity
 {
     private int $owner_id;
-    private int $participant_id;
-    private string $date_creation;
     private string $owner_miniature;
     private string $owner_pseudo;
+    private int $owner_non_lu;
+    private int $participant_id;
     private string $participant_miniature;
     private string $participant_pseudo;
+    private int $participant_non_lu;
+    private string $date_creation;
     private string $last_message;
     private const DEFAULT_MINIATURE_PROFIL_URL = "miniature-profil-default.png";
 
@@ -35,42 +37,6 @@ class Chat extends AbstractEntity
     public function getOwnerId(): int
     {
         return $this->owner_id;
-    }
-
-    /**
-     * Setter pour participant_id.
-     * @param int $participant_id
-     */
-    public function setParticipantId(int $participant_id): void
-    {
-        $this->participant_id = $participant_id;
-    }
-
-    /**
-     * Getter pour participant_id.
-     * @return int
-     */
-    public function getParticipantId(): int
-    {
-        return $this->participant_id;
-    }
-
-    /**
-     * Setter pour date_creation.
-     * @param string $date_creation
-     */
-    public function setDateCreation(string $date_creation): void
-    {
-        $this->date_creation = $date_creation;
-    }
-
-    /**
-     * Getter pour date_creation.
-     * @return string
-     */
-    public function getDateCreation(): string
-    {
-        return $this->date_creation;
     }
 
     /**
@@ -110,6 +76,42 @@ class Chat extends AbstractEntity
     }
 
     /**
+     * Setter pour owner_non_lu.
+     * @param int $owner_non_lu
+     */
+    public function setOwnerNonLu(int $owner_non_lu): void
+    {
+        $this->owner_non_lu = $owner_non_lu;
+    }
+
+    /**
+     * Getter pour owner_non_lu.
+     * @return int
+     */
+    public function getOwnerNonLu(): int
+    {
+        return $this->owner_non_lu;
+    }
+
+    /**
+     * Setter pour participant_id.
+     * @param int $participant_id
+     */
+    public function setParticipantId(int $participant_id): void
+    {
+        $this->participant_id = $participant_id;
+    }
+
+    /**
+     * Getter pour participant_id.
+     * @return int
+     */
+    public function getParticipantId(): int
+    {
+        return $this->participant_id;
+    }
+
+    /**
      * Setter pour participant_miniature.
      * @param string $participant_miniature
      */
@@ -143,6 +145,42 @@ class Chat extends AbstractEntity
     public function getParticipantPseudo(): string
     {
         return $this->participant_pseudo;
+    }
+
+    /**
+     * Setter pour participant_non_lu.
+     * @param int $participant_non_lu
+     */
+    public function setParticipantNonLu(int $participant_non_lu): void
+    {
+        $this->participant_non_lu = $participant_non_lu;
+    }
+
+    /**
+     * Getter pour participant_non_lu.
+     * @return int
+     */
+    public function getParticipantNonLu(): int
+    {
+        return $this->participant_non_lu;
+    }
+
+    /**
+     * Setter pour date_creation.
+     * @param string $date_creation
+     */
+    public function setDateCreation(string $date_creation): void
+    {
+        $this->date_creation = $date_creation;
+    }
+
+    /**
+     * Getter pour date_creation.
+     * @return string
+     */
+    public function getDateCreation(): string
+    {
+        return $this->date_creation;
     }
 
     /**

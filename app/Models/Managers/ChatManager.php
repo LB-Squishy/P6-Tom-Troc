@@ -120,4 +120,21 @@ class ChatManager extends AbstractManager
         $stmt = $this->db->prepare("DELETE FROM {$this->table} WHERE id = :chat_id");
         $stmt->execute(['chat_id' => $chat_id]);
     }
+
+    // Recupère le comptage de message non lu
+    public function getTotalUnreadCount(int $user_id): int
+    {
+        $stmt = $this->db->prepare("
+        SELECT SUM(CASE 
+                WHEN owner_id = :user_id THEN owner_non_lu
+                WHEN participant_id = :user_id THEN participant_non_lu
+                ELSE 0
+            END) AS total_non_lu 
+        FROM {$this->table} 
+        WHERE owner_id = :user_id OR participant_id = :user_id
+        ");
+        $stmt->execute(['user_id' => $user_id]);
+        $data = $stmt->fetch();
+        return $data ? (int)$data['total_non_lu'] : 0;
+    }
 }
