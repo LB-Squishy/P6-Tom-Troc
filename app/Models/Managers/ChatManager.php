@@ -39,10 +39,17 @@ class ChatManager extends AbstractManager
         if ($data && $this->entityClass) {
             foreach ($data as $chatData) {
                 $chat = new $this->entityClass($chatData);
-                $chat->setOwnerMiniature($chatData['owner_miniature']);
-                $chat->setOwnerPseudo($chatData['owner_pseudo']);
-                $chat->setParticipantMiniature($chatData['participant_miniature']);
-                $chat->setParticipantPseudo($chatData['participant_pseudo']);
+                if ($chatData['participant_id'] === $user_id) {
+                    $chat->setOwnerMiniature($chatData['participant_miniature']);
+                    $chat->setOwnerPseudo($chatData['participant_pseudo']);
+                    $chat->setParticipantMiniature($chatData['owner_miniature']);
+                    $chat->setParticipantPseudo($chatData['owner_pseudo']);
+                } else {
+                    $chat->setOwnerMiniature($chatData['owner_miniature']);
+                    $chat->setOwnerPseudo($chatData['owner_pseudo']);
+                    $chat->setParticipantMiniature($chatData['participant_miniature']);
+                    $chat->setParticipantPseudo($chatData['participant_pseudo']);
+                }
                 $chats[] = $chat;
             }
             return $chats;
