@@ -1006,4 +1006,37 @@ a.link-livre-card:hover {
   max-height: 49px;
 }
 
+.error404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: calc(100vh - 80px - 85px);
+}
+
+.error404__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.error404__image {
+  margin-top: 30px;
+  width: auto;
+  height: calc(100% - 150px);
+}
+
+.error404 .btn {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /*# sourceMappingURL=style.css.map */
