@@ -47,11 +47,11 @@ class MonCompteController extends AbstractController
             $this->redirectWithMessage('error', 'Méthode non autorisée.', '/mon-compte');
         }
         // Vérifie la présence de la photo
-        if (!isset($_FILES['photo'])) {
+        if (!isset($_FILES['profilImage'])) {
             $this->redirectWithMessage('error', 'Aucune photo n\'a été téléchargée.', '/mon-compte');
         }
         //Valider la photo
-        $photo = $_FILES['photo'];
+        $photo = $_FILES['profilImage'];
         $validationPhotoResponse = Utils::validatePhoto($photo);
         if ($validationPhotoResponse !== true) {
             $this->redirectWithMessage('error', $validationPhotoResponse, '/mon-compte');

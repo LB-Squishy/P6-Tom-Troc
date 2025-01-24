@@ -64,11 +64,11 @@ class EditionLivreController extends AbstractController
             $this->redirectWithMessage('error', 'Action non autorisée. Vous n\'êtes pas le propriétaire de ce livre.', '/mon-compte');
         }
         // Vérifie la présence de la couverture
-        if (!isset($_FILES['bookCover'])) {
+        if (!isset($_FILES['bookImage'])) {
             $this->redirectWithMessage('error', 'Aucune photo n\'a été téléchargée ou erreur de téléchargement.', '/edition-livre?book_id=' . $book_id);
         }
         // Valider la couverture
-        $cover = $_FILES['bookCover'];
+        $cover = $_FILES['bookImage'];
         $validationPhotoResponse = Utils::validateCover($cover);
         if ($validationPhotoResponse !== true) {
             $this->redirectWithMessage('error', $validationPhotoResponse, '/edition-livre?book_id=' . $book_id);

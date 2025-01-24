@@ -33,11 +33,8 @@
     <?php include "./app/Views/components/layout/footer.php"; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="/src/js/alerteTimer.js"></script>
-    <script src="/src/js/modalePhoto.js"></script>
-    <script src="/src/js/modaleConfirmation.js"></script>
-    <script src="/src/js/modaleBookCover.js"></script>
-    <script src="/src/js/modaleEditBook.js"></script>
+    <script type="module" src="/src/js/alerteTimer.js"></script>
+    <script type="module" src="/src/js/modals.js"></script>
 
 </body>
 

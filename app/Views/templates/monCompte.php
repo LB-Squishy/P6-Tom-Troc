@@ -13,24 +13,24 @@ require_once './app/Services/Anciennete.php'
             <div class="moncompte-section__section-member">
                 <div class="moncompte-section__section-member--photo">
                     <img class="mb-2 profil-miniature" src="<?= PROFILE_IMAGE_PATH . htmlspecialchars($miniature_profil_url, ENT_QUOTES, 'UTF-8'); ?>" alt="Photo de profil" />
-                    <a class="moncompte-section__section-member--modifier" data-bs-toggle="modal" data-bs-target="#photoModal">modifier</a>
+                    <a class="moncompte-section__section-member--modifier" data-bs-toggle="modal" data-bs-target="#profilImageFormModal">modifier</a>
                 </div>
                 <!-- Modale pour modifier la photo de profil -->
-                <div class="modal fade" id="photoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+                <div class="modal fade" id="profilImageFormModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="profilImageFormLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="photoModalLabel">Changer la photo de profil</h5>
+                                <h5 class="modal-title" id="profilImageFormLabel">Changer la photo de profil</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="photoForm" method="POST" action="/mon-compte/edit-miniature" enctype="multipart/form-data">
-                                    <input type="file" name="photo" accept="image/*" required>
+                                <form id="profilImageForm" method="POST" action="/mon-compte/edit-miniature" enctype="multipart/form-data">
+                                    <input type="file" name="profilImage" accept="image/*" required>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" id="cancelPhotoButton">Annuler</button>
-                                <button type="button" class="btn btn-primary" id="confirmPhotoButton">Confirmer</button>
+                                <button type="button" class="btn btn-secondary" id="profilImageFormCancelButton">Annuler</button>
+                                <button type="button" class="btn btn-primary" id="profilImageFormConfirmButton">Confirmer</button>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ require_once './app/Services/Anciennete.php'
         <section class="moncompte-section">
             <div class="moncompte-section__section-infos">
                 <p class="moncompte-section__section-infos--title">Vos informations personnelles</p>
-                <form id="infoUserForm" method="POST" action="/mon-compte/maj-infos-utilisateur">
+                <form id="userForm" method="POST" action="/mon-compte/maj-infos-utilisateur">
                     <div class="mb-3">
                         <label class="form-label" for="email">Adresse email</label>
                         <input class="moncompte-section__section-infos--form-control form-control" id="email" type="email" name="email" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>" required>
@@ -64,23 +64,23 @@ require_once './app/Services/Anciennete.php'
                         <label class="form-label" for="pseudo">Pseudo</label>
                         <input class="moncompte-section__section-infos--form-control form-control" id="pseudo" type="text" name="pseudo" value="<?= htmlspecialchars($pseudo, ENT_QUOTES, 'UTF-8'); ?>" required>
                     </div>
-                    <button class="btn btn-secondary" type="button" id="showModalButton" data-bs-toggle="modal" data-bs-target="#confirmationModal">Enregistrer</button>
+                    <button class="btn btn-secondary" type="button" id="showModalButton" data-bs-toggle="modal" data-bs-target="#userFormModal">Enregistrer</button>
                 </form>
             </div>
             <!-- Modale de confirmation -->
-            <div class="modal fade" id="confirmationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+            <div class="modal fade" id="userFormModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userFormLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                            <h5 class="modal-title" id="userFormLabel">Confirmation</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p id="confirmationMessage">Êtes-vous sûr de vouloir modifier vos informations utilisateur ?</p>
+                            <p id="userFormMessage">Êtes-vous sûr de vouloir modifier vos informations utilisateur ?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="cancelButton">Annuler</button>
-                            <button type="button" class="btn btn-primary" id="confirmButton">Confirmer</button>
+                            <button type="button" class="btn btn-secondary" id="userFormCancelButton">Annuler</button>
+                            <button type="button" class="btn btn-primary" id="userFormConfirmButton">Confirmer</button>
                         </div>
                     </div>
                 </div>
