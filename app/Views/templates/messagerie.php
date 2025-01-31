@@ -22,7 +22,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="/messagerie/delete-chat?chat_id=<?= urlencode($chat->getId()) ?>" class="chat-section__card--delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce chat ?');">
+                    <a href="/messagerie/delete-chat?chat_id=<?= urlencode($chat->getId()) ?>" class="chat-section__card--delete" aria-label="Supprimer ce chat" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce chat ?');">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </div>

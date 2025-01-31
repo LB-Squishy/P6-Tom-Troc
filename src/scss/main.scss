@@ -3,7 +3,10 @@
 @import "utils/mixins";
 @import "utils/variables";
 @import "reset";
+@import "components/header";
+@import "components/footer";
 @import "components/bookCard";
+@import "components/bouton";
 @import "pages/connexion";
 @import "pages/accueil";
 @import "pages/nosLivres";

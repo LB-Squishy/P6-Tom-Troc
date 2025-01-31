@@ -1,0 +1,15 @@
+.footer__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    height: 60px !important;
+    background-color: $background-footer-color !important;
+    padding-right: 22px !important;
+    &--item a {
+        text-decoration: none;
+        &:hover {
+            color: $primary-color !important;
+        }
+    }
+}

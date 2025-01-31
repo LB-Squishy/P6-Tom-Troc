@@ -1,0 +1,64 @@
+header {
+    display: flex;
+    gap: 78px;
+    height: 80px !important;
+    background-color: $background-header-color !important;
+    padding: 15px 150px !important;
+}
+
+.navbar {
+    width: 100%;
+    justify-content: space-between !important;
+    &__container {
+        display: flex !important;
+        gap: 44px;
+        &--link {
+            position: relative !important;
+            display: flex;
+            align-items: baseline;
+            text-decoration: none !important;
+            gap: 2px !important;
+            &.active {
+                color: $primary-color !important;
+            }
+            &::after {
+                content: "" !important;
+                position: absolute !important;
+                left: 0 !important;
+                bottom: -1px !important;
+                width: 0 !important;
+                height: 2px !important;
+                background-color: $primary-color !important;
+                transition: width 0.3s ease-in-out !important;
+            }
+            &:hover {
+                color: $primary-color !important;
+                &::after {
+                    width: 100% !important;
+                }
+            }
+            &.active {
+                color: $primary-color !important;
+                &::after {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}
+
+.counterPill {
+    position: absolute;
+    right: -12px;
+    top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    font-size: 8.25px;
+    font-weight: 700;
+    min-width: 10px;
+    padding: 2px;
+    border-radius: 6.75px;
+}

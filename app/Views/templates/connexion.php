@@ -27,9 +27,8 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="col-md-6 d-flex align-items-center justify-content-center p-0" style="overflow: hidden; height: calc(100vh - 80px - 80px);">
-            <img src="/src/images/connexion-desktop.webp" class="img-fluid w-100 h-100 d-none d-md-block" style="object-fit: cover;" alt="image de connexion">
-            <img src="/src/images/connexion-mobile.webp" class="img-fluid w-100 h-100 d-block d-md-none" style="object-fit: cover;" alt="image de connexion">
+        <div class="col-md-6 d-flex align-items-center justify-content-center p-0" style="overflow: hidden; height: calc(100vh - 80px - 60px);">
+            <img src="/src/images/connexion.webp" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="image de connexion">
         </div>
     </div>
 </div>

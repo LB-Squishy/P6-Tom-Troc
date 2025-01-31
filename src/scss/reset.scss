@@ -19,14 +19,6 @@ body {
     margin-bottom: 100px !important;
 }
 
-.navbar-background {
-    background-color: $background-header-color !important;
-}
-
-.nav-link.active {
-    color: $primary-color !important;
-}
-
 h1 {
     font-family: "Playfair Display" !important;
     font-size: 36px !important;
@@ -49,9 +41,15 @@ P {
     margin: 0px !important;
 }
 
-section {
+section,
+ul,
+li {
     padding: 0 !important;
     margin: 0 !important;
+}
+
+li {
+    list-style: none;
 }
 
 .form-label {
@@ -66,30 +64,6 @@ section {
     }
 }
 
-.btn-primary {
-    background-color: $primary-color !important;
-    border-radius: 10px !important;
-    border-color: $primary-color !important;
-    color: white !important;
-    height: 63px !important;
-    font-weight: 600 !important;
-    align-content: center;
-    padding-left: 35px !important;
-    padding-right: 35px !important;
-}
-
-.btn-secondary {
-    background-color: $background-header-color !important;
-    border-radius: 10px !important;
-    border-color: $primary-color !important;
-    color: $primary-color !important;
-    height: 63px !important;
-    font-weight: 600 !important;
-    align-content: center;
-    padding-left: 35px !important;
-    padding-right: 35px !important;
-}
-
 .profil-miniature {
     display: block !important;
     width: 135px !important;
@@ -97,8 +71,4 @@ section {
     border-radius: 50% !important;
     object-fit: cover !important;
     background-color: $background-secondary-color;
-}
-
-footer {
-    background-color: $background-footer-color !important;
 }

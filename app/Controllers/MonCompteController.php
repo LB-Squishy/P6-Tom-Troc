@@ -140,7 +140,7 @@ class MonCompteController extends AbstractController
         }
         //Récupère le livre à partir de l'ID
         $bookManager = new BookManager();
-        $book = $bookManager->getBookById($book_id);
+        $book = $bookManager->find($book_id);
         if (!$book_id) {
             $this->redirectWithMessage('error', 'Livre introuvable.', '/mon-compte');
         }
@@ -149,7 +149,7 @@ class MonCompteController extends AbstractController
             $this->redirectWithMessage('error', 'Action non autorisée. Vous n\'êtes pas le propriétaire de ce livre. Echec de suppression', '/mon-compte');
         }
         //Supprime le livre
-        $bookManager->deleteBookById($book_id);
+        $bookManager->delete($book_id);
         $this->redirectWithMessage('success', 'Le livre a bien été supprimé.', '/mon-compte');
     }
 
